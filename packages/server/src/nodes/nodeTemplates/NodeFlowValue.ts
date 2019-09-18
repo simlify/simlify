@@ -3,7 +3,7 @@
 import { NodeBase } from '../nodeBase';
 import Flow from '../../flow/lib/Flow';
 import { InputPort, OutputPort } from '../ports';
-import { PortValueType, portTypeFactory } from '../ports/PortTypes';
+import { PortValueType, portTypeFactory } from '../ports/portTypes';
 import logger from '../../utilities/logger';
 
 const MODULENAME = 'NodeFlowValue';
