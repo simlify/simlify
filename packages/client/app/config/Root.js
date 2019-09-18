@@ -22,7 +22,7 @@ const Root = () => {
         <Header id="header" />
         <MainLayout>
           <Switch>
-            <Route exact path="/simulator" component={Simulator} />
+            <Route exact path="/app/simulator" component={Simulator} />
             <Route component={NotFound} status={404} />
           </Switch>
         </MainLayout>

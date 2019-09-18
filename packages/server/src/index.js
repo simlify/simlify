@@ -6,17 +6,18 @@ const swagger = require('./config/swagger');
 const MODULENAME = 'SERVER';
 
 module.exports = {
-    start: () => {
-        const server = express();
-        swagger(server);
-        core.init(server)
-            .then(_ => {
-                server.listen(3000, err => {
-                    err
-                    ? logger.error(MODULENAME, err)
-                    : logger.info(MODULENAME, `Server running on Port ${3000}`);
-                });
-            })
-            .catch(err => logger.error(MODULENAME, err))
+    start: (server) => {
+        return new Promise((resolve, reject) => {
+            if(!server) server = express();
+            swagger(server);
+            core.init(server)
+                .then(_ => {
+                    resolve(server);
+                })
+                .catch(err => {
+                    logger.error(MODULENAME, err);
+                    reject(server);
+                })
+        })
     }
 }

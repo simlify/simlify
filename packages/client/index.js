@@ -2,15 +2,15 @@ const express = require('express');
 const path = require('path');
 
 module.exports = {
-  start: () => {
-    const app = express();
+  start: (app) => {
+    if(!app) app = express();
 
-    app.use(express.static(__dirname +'/dist/')); //serves the index.html
+    app.use(express.static(__dirname +'/dist/'));
     
-    app.get('*', (req, res) => {
+    app.get('/app/*', (req, res) => {
         res.sendFile(path.join(__dirname+'/dist/index.html'));
       });
     
-    app.listen(8080);
+    if(!app) app.listen(8080);
   }
 }
