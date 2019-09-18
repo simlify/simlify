@@ -1,6 +1,6 @@
 {
   "name": "@simlify/simlify",
-  "version": "0.0.4",
+  "version": "0.0.4-a1",
   "description": "",
   "main": "index.js",
   "publishConfig": {
@@ -13,8 +13,8 @@
   "author": "Christian Bühlmeyer",
   "license": "MIT",
   "dependencies": {
-    "@simlify/client": "^0.0.4",
-    "@simlify/server": "^0.0.4",
+    "@simlify/client": "^0.0.4-a1",
+    "@simlify/server": "^0.0.4-a1",
     "express": "^4.17.1"
   },
   "gitHead": "d1830cea6923c9a1f856ba4fffbc6b9c1fa5ea50"
