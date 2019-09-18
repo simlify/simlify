@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "compile": "",
     "clean": "rimraf dist"
@@ -12,5 +15,6 @@
   "dependencies": {
     "@simlify/client": "^0.0.1",
     "@simlify/server": "^0.0.1"
-  }
+  },
+  "gitHead": "d1830cea6923c9a1f856ba4fffbc6b9c1fa5ea50"
 }
