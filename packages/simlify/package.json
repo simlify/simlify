@@ -12,7 +12,5 @@
   "dependencies": {
     "@simlify/client": "^0.0.1",
     "@simlify/server": "^0.0.1"
-  },
-  "devDependencies": {
   }
 }
