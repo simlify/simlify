@@ -1,0 +1,3 @@
+node_modules
+.DS_Store -- If you're on mac machine
+dist

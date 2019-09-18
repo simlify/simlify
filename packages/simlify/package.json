@@ -1,0 +1,18 @@
+{
+  "name": "@simlify/simlify",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "",
+    "clean": "rimraf dist"
+  },
+  "author": "Christian Bühlmeyer",
+  "license": "MIT",
+  "dependencies": {
+    "@simlify/client": "^0.0.1",
+    "@simlify/server": "^0.0.1"
+  },
+  "devDependencies": {
+  }
+}

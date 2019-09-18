@@ -1,0 +1,5 @@
+{
+    "name": "NodeDragBar",
+    "private": true,
+    "main": "./NodeDragBar.js"
+}

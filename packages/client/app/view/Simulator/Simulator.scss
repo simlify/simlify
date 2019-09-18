@@ -1,0 +1,36 @@
+.simulator {
+    height: 100%;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    position: fixed;
+
+    &__nodeArea {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    &__buttonBar {
+        top: 50px;
+        z-index: 2;
+        margin-left: auto;
+        margin-right: auto;
+        display: table;
+        position: absolute;
+        right: 50%;
+        margin-right: -50px;
+
+        &__container {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    .button {
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

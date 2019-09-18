@@ -1,0 +1,37 @@
+@import "../../assets/scss/variables.scss";
+
+.nodeDragBar {
+  background-color: $nodeArea-background;
+
+  .dragElement {
+    border: solid 1px gray;
+    padding: 5px;
+    background-color: $node-background;
+    color: white;
+    cursor: move;
+
+    &__grip {
+      content: '....';
+      width: 10px;
+      height: 20px;
+      display: inline-block;
+      overflow: hidden;
+      line-height: 5px;
+      padding: 3px 4px;
+      cursor: move;
+      vertical-align: middle;
+      margin-top: -.7em;
+      margin-right: .3em;
+      font-size: 12px;
+      font-family: sans-serif;
+      letter-spacing: 2px;
+      color: #cccccc;
+      text-shadow: 1px 0 1px black;
+      float: right;
+
+      &::after {
+        content: '.. .. .. ..';
+      }
+    }
+  }
+}

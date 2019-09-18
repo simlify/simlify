@@ -1,0 +1,5 @@
+{
+    "name": "NodeArea",
+    "private": true,
+    "main": "./NodeArea.js"
+}

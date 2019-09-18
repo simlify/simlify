@@ -1,0 +1,38 @@
+@import "./variables.scss";
+
+body {
+  color: $color;
+  background-color: $background;
+  font-family: 'Titillium Web', sans-serif;
+  overflow-y: unset !important;
+
+  margin: 0px;
+  padding-right: 0px!important;
+}
+
+a {
+  color: unset;
+  text-decoration: unset;
+}
+
+h1 {
+  width: 100%;
+  margin-top: 0px;
+  font-weight: 300;
+}
+
+h2 {
+  font-weight: 300;
+  margin-top: 0px;
+}
+
+h3 {
+  font-weight: 300;
+  margin-top: 0px;
+}
+
+.mainLayout {
+  // margin-left: $sidebar-width;
+  margin-top: $header-height;
+  flex: 1 1 auto;
+}

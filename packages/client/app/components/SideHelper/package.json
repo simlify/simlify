@@ -1,0 +1,5 @@
+{
+    "name": "SideHelper",
+    "private": true,
+    "main": "./SideHelper.js"
+}

@@ -1,0 +1,5 @@
+{
+    "name": "Simulator",
+    "private": true,
+    "main": "./Simulator.js"
+}

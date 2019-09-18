@@ -1,0 +1,5 @@
+{
+    "name": "SideBar",
+    "private": true,
+    "main": "./SideBar.js"
+}

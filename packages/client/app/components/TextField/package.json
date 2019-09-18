@@ -1,0 +1,5 @@
+{
+    "name": "TextField",
+    "private": true,
+    "main": "./TextField.js"
+}
