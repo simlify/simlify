@@ -7,16 +7,21 @@ module.exports = (app) => {
           version: '1.0.0',
           description: 'Swagger interface',
         },
-        host: 'localhost:3000',
+        host: '',
         basePath: '/',
     };
       
     // options for swagger jsdoc 
     const options = {
         swaggerDefinition: swaggerDefinition, // swagger definition
-        apis: ['./packages/client-api/endpoints/**/*.route.js'], // path where API specification are written
+        apis: [
+            // route when executing npm start from main folder
+            '../server/src/client-api/endpoints/**/*.route.js',
+            // path if index.js from simlify folder is started
+            './packages/server/src/client-api/endpoints/**/*.route.js'
+        ],
     };
-      
+
     // initialize swaggerJSDoc
     const swaggerSpec = swaggerJSDoc(options);
     const swaggerUi = require('swagger-ui-express')

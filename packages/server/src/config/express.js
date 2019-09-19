@@ -3,8 +3,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 
-module.exports = () => {
-    const app = express();
+module.exports = (app) => {
+    if(!app) app = express();
 
     app.use(morgan('combined'));
 

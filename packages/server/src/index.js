@@ -8,7 +8,7 @@ const MODULENAME = 'SERVER';
 module.exports = {
     start: (server) => {
         return new Promise((resolve, reject) => {
-            if(!server) server = express();
+            server = express(server);
             swagger(server);
             core.init(server)
                 .then(_ => {
