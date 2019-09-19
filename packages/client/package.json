@@ -16,6 +16,10 @@
   },
   "author": "Christian Bühlmeyer <christian_buehlmeyer@yahoo.de>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simlify/simlify.git"
+  },
   "dependencies": {
     "@emotion/core": "^10.0.16",
     "@emotion/styled": "^10.0.15",

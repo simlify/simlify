@@ -3,7 +3,11 @@ const path = require('path');
 
 module.exports = {
   start: (app) => {
-    if(!app) app = express();
+    let hasExternalServer = !!app;
+    
+    if(!app) {
+      app = express();
+    }
 
     app.use(express.static(__dirname +'/dist/'));
     
@@ -11,6 +15,8 @@ module.exports = {
         res.sendFile(path.join(__dirname+'/dist/index.html'));
       });
     
-    if(!app) app.listen(8080);
+    if(!hasExternalServer) {
+      app.listen(8080);
+    }
   }
 }

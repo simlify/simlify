@@ -24,6 +24,9 @@ const config = {
   devServer: {
     port: 8081,
     historyApiFallback: true,
+    proxy: { 
+      '/api/*': 'http://localhost:3000/'
+    }
   },
 
   node: {

@@ -13,6 +13,10 @@
   },
   "author": "Christian Bühlmeyer",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simlify/simlify.git"
+  },
   "dependencies": {
     "@simlify/client": "^0.0.4-a1",
     "@simlify/server": "^0.0.4-a1",

@@ -6,5 +6,9 @@
   "scripts": {
     "build": "lerna run build && lerna bootstrap",
     "start": "npm run build && cd packages/simlify && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/simlify/simlify.git"
   }
 }
