@@ -7,9 +7,9 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
-    "compile": "npm run clean && npm run build",
+    "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
+    "compile": "tsc -p tsconfig.build.json",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix"
   },
   "author": "Christian Bühlmeyer",

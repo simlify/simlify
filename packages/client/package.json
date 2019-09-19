@@ -7,12 +7,12 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "npm run clean && npm run compile && npm run copy",
     "clean": "rimraf dist",
     "compile": "webpack --config webpack.config.js --progress --profile --colors --mode production",
     "copy": "shx cp ./static/* ./dist",
     "dev": "webpack-dev-server",
-    "start": "npm run build && npm run copy && node server.js"
+    "start": "node index.js"
   },
   "author": "Christian Bühlmeyer <christian_buehlmeyer@yahoo.de>",
   "license": "MIT",

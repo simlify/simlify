@@ -8,7 +8,8 @@
   },
   "scripts": {
     "compile": "",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "start": "node index.js"
   },
   "author": "Christian Bühlmeyer",
   "license": "MIT",

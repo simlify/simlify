@@ -2,5 +2,9 @@
   "name": "root",
   "devDependencies": {
     "lerna": "^3.16.4"
+  },
+  "scripts": {
+    "build": "lerna run build && lerna bootstrap",
+    "start": "npm run build && cd packages/simlify && npm start"
   }
 }
