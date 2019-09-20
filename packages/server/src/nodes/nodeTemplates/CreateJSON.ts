@@ -22,7 +22,8 @@ export default class CreateJSON extends NodeTriggerBase {
 
     const options: OptionsBase = {
       settings: [],
-      variables: {}
+      variables: {},
+      description: 'This node generates a JSON output that can be processed from e.g. a MQTT output node.',
     };
     this.setOptions(options);
   }

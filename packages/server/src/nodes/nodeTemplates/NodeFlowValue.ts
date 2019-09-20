@@ -4,7 +4,7 @@ import { NodeBase } from '../nodeBase';
 import Flow from '../../flow/lib/Flow';
 import { InputPort, OutputPort } from '../ports';
 import { PortValueType, portTypeFactory } from '../ports/portTypes';
-import logger from '../../utilities/logger';
+import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
 
 const MODULENAME = 'NodeFlowValue';
 
@@ -30,6 +30,19 @@ export default class NodeFlowValue extends NodeBase {
     );
 
     if (parentFlow) parentFlow.registerOnValueUpdateCB(nodeId, this.triggerNext.bind(this));
+
+    const options: OptionsBase = this.createOptions();
+    this.setOptions(options);
+  }
+
+  createOptions() {
+    const options: OptionsBase = {
+      description: `This node will access the current value of this node \
+      and send it to the next node. The trigger output is exectued every time \
+      the value changes.`,
+    };
+
+    return options;
   }
 
   getTriggerOutputPort(): OutputPort {

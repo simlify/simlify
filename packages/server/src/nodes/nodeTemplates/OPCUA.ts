@@ -91,7 +91,9 @@ export default class OPCUA extends NodeTriggerBase {
         }
       ],
       variables: {},
-      description: 'An Output node for OPC-UA',
+      description: `This output node allows setup an OPC-UA server. \
+      Check the settings page to configure the server for your needs. \
+      You can have multiple OPC-UA nodes just with differing VariableNames.`,
     };
 
     return options;

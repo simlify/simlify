@@ -3,6 +3,7 @@
 import { NodeDataBase } from '../nodeBase';
 import { OutputPort, InputPort } from '../ports';
 import { portTypeFactory } from '../ports/portTypes';
+import { OptionsBase } from '../nodeBase/NodeBase';
 import Flow from '../../flow/lib/Flow';
 
 export default class NumberNode extends NodeDataBase {
@@ -24,6 +25,17 @@ export default class NumberNode extends NodeDataBase {
         '',
         async () => await this.getNumber()
     ));
+
+    const options: OptionsBase = this.createOptions();
+    this.setOptions(options);
+  }
+
+  createOptions() {
+    const options: OptionsBase = {
+      description: 'This node will just output the number spezified.',
+    };
+
+    return options;
   }
 
   async getNumber() {

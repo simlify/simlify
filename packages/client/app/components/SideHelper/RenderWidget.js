@@ -10,9 +10,7 @@ const RenderWidget = (props) => {
   const engine = createEngine();
 
   return (
-    <div>
-      <SimulationNodeWidget node={nodeModel} engine={engine} inActive/>
-    </div>
+    <SimulationNodeWidget node={nodeModel} engine={engine} inActive/>
   );
 }
 

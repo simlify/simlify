@@ -3,6 +3,7 @@
 import { NodeDataBase } from '../nodeBase';
 import { InputPort, OutputPort } from '../ports';
 import { portTypeFactory } from '../ports/portTypes';
+import { OptionsBase } from '../nodeBase/NodeBase';
 import { logger } from '../../utilities';
 import Flow from '../../flow/lib/Flow';
 
@@ -18,6 +19,18 @@ export default class RandomNode extends NodeDataBase {
         'number',
         async () => await this.generateRandomValue()
     ));
+
+    const options: OptionsBase = this.createOptions();
+    this.setOptions(options);
+  }
+
+  createOptions() {
+    const options: OptionsBase = {
+      description: `This node will just output a random number between the minimum and maximum \
+      number specified. You can use it to vary the scale or length of a curve.`,
+    };
+
+    return options;
   }
 
   async generateRandomValue(): Promise<number> {

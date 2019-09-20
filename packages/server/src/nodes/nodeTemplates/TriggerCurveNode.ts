@@ -3,6 +3,7 @@
 import { NodeTriggerBase } from '../nodeBase/';
 import { InputPort, OutputPort } from '../ports';
 import { portTypeFactory } from '../ports/portTypes';
+import { OptionsBase } from '../nodeBase/NodeBase';
 import { logger } from '../../utilities';
 import Flow from '../../flow/lib/Flow';
 
@@ -35,6 +36,19 @@ export default class TriggerCurveNode extends NodeTriggerBase {
       'latestValue',
       () => this.latestValue
     ));
+
+    const options: OptionsBase = this.createOptions();
+    this.setOptions(options);
+  }
+
+  createOptions() {
+    const options: OptionsBase = {
+      description: `The curve connected to the curveData will be used to generate a new value for this flow. \
+      The value of samplesPerSecond specifies how often per second the value is update. \
+      The length of the curve can be set by the durationMs input.`,
+    };
+
+    return options;
   }
 
   /**

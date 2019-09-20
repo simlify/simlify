@@ -38,7 +38,7 @@ const SideHelper = (props) => {
 
   function renderDescription(description) {
     return (
-      <div>
+      <div className="sideHelper__body__description">
         <RenderWidget id={generateId()} node={node}/>
         { description }
       </div>

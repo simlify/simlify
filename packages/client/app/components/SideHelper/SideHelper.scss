@@ -12,5 +12,27 @@
         padding: 10px;
         color: white;
         font-size: 14px;
+
+        label, input {
+            color: white!important;
+        }
+
+        button {
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            margin-top: 10px;
+        }
+
+        &__description {
+            display: grid;
+
+            .simulationNode {
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 20px;
+                margin-top: 20px;
+            }
+        }
     }
 }
