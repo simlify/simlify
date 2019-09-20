@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import NodeArea from '../../components/NodeArea';
-import Tabbar from '../../components/Tabbar';
+import TabBar from '../../components/TabBar';
 import api from '../../../helper/api';
 import convertForApi from '../../../helper/convertForApi';
 import SideHelper from '../../components/SideHelper';
@@ -114,7 +114,7 @@ class Simulator extends React.Component {
               </ButtonGroup>
             </div>
           </div>
-          <Tabbar
+          <TabBar
             tabs={tabs}
             onTabChange={(selectedTab) => this.onTabChange(selectedTab)}
           />

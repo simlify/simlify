@@ -1,12 +1,14 @@
+@import "../../assets/scss/variables.scss";
+
 .tabBar {
     display: flex;
     margin-top: 5px;
 
     .tab {
         padding: 5px;
-        border-top: solid 1px #646c87;
-        border-right: solid 1px #646c87;
-        border-left: solid 1px #646c87;
+        border-top: solid 1px $light-accent;
+        border-right: solid 1px $light-accent;
+        border-left: solid 1px $light-accent;
         background-color: #3741646c;
         color: white;
         border-radius: 5px 5px 0px 0px;
@@ -16,7 +18,7 @@
         cursor: pointer;
 
         &--active {
-            background-color: #374164;
+            background-color: $nodeArea-background;
         }
     }
 }

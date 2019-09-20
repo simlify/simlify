@@ -6,7 +6,7 @@ import './SimulationNodeStyle.scss';
 
 export class SimulationNodeWidget extends React.Component {
 	render() {
-		const { node } = this.props;
+		const { node, inActive } = this.props;
 		const ports = node.getPorts();
 
 		const inputPorts = [];
@@ -51,13 +51,25 @@ export class SimulationNodeWidget extends React.Component {
 					<div className="simulationNode__titleNode">
 						{
 							triggerInputPort
-							? <SimPortLabel roundedLeft disableLabel engine={this.props.engine} port={triggerInputPort} />
+							? <SimPortLabel
+								  roundedLeft
+								  inactivePort={inActive}
+								  disableLabel
+								  engine={this.props.engine}
+								  port={triggerInputPort}
+								/>
 							: <div />
 						}
 						<div className="simulationNode__titleNode__title"> {node.options.name} </div>
 						{
 							triggerOutputPort
-							? <SimPortLabel roundedRight disableLabel engine={this.props.engine} port={triggerOutputPort} />
+							? <SimPortLabel
+								roundedRight
+								inactivePort={inActive}
+								disableLabel
+								engine={this.props.engine}
+								port={triggerOutputPort}
+							/>
 							: <div />
 						}
 					</div>
@@ -69,14 +81,14 @@ export class SimulationNodeWidget extends React.Component {
 					<div className="simulationNode__ports simulationNode__inputPorts">
 					{
 						inputPorts.map((inputPort) => (
-							<SimPortLabel roundedLeft engine={this.props.engine} port={inputPort} />
+							<SimPortLabel roundedLeft inactivePort={inActive} engine={this.props.engine} port={inputPort} />
 						))
 					}
 					</div>
 					<div className="simulationNode__ports simulationNode__outputPorts">
 					{
 						outputPorts.map((outputPort) => (
-							<SimPortLabel roundedRight engine={this.props.engine} port={outputPort} />
+							<SimPortLabel roundedRight inactivePort={inActive} engine={this.props.engine} port={outputPort} />
 						))
 					}
 					</div>
