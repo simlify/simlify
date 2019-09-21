@@ -48,7 +48,9 @@ export default class JSON extends NodeTriggerBase {
 
     // tslint:disable-next-line
     const func = new Function(body);
-    const jsonOutput = func.call(null).call(measurement1, measurement2, measurement3);
+    console.log('body: ', body);
+    console.log('measurement1: ', measurement1);
+    const jsonOutput = func.call(null).call(null, measurement1, measurement2, measurement3);
     console.log(jsonOutput);
     return jsonOutput;
   }
