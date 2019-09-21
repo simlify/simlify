@@ -16,4 +16,10 @@
   align-items: center;
   justify-content: space-between;
   flex: 0 1 auto;
+
+  svg {
+    height: 25px;
+    width: 130px;
+    opacity: 0.7;
+  }
 }
