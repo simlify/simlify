@@ -88,6 +88,9 @@ class Simulator extends React.Component {
     if (event.function === 'selectionChanged') {
       this.handleSelectionChange(event.entity, event.isSelected);
     }
+    if (event.function === 'entityRemoved') {
+      this.handleSelectionChange(event.entity, false);
+    }
   }
 
   render() {
