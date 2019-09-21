@@ -6,9 +6,9 @@ import { InputPort, OutputPort } from '../ports';
 import { PortValueType, portTypeFactory } from '../ports/portTypes';
 import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
 
-const MODULENAME = 'NodeFlowValue';
+const MODULENAME = 'CurrentValue';
 
-export default class NodeFlowValue extends NodeBase {
+export default class CurrentValue extends NodeBase {
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
 

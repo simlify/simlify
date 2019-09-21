@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BezierCurve from 'bezier-easing-editor';
+import Bezier from '../../Bezier';
 import { SimPortLabel } from '../Ports/SimPortWidget';
 
 import './SimulationNodeStyle.scss';
@@ -33,10 +33,12 @@ export class SimulationNodeWidget extends React.Component {
 				const points = node.options.options.variables.points;
 				visualisation = <div 
 				  onMouseDown={() => node.setLocked(true)}
-				  onMouseUp={() => node.setLocked(false)}
+					onMouseUp={() => node.setLocked(false)}
+					onMouseLeave={() => node.setLocked(false)}
+					className="simulationNode__body__visualisation"
 			  >
-					<BezierCurve
-						defaultValue={points}
+					<Bezier
+						defaultPosition={points}
 						onChange={(newPoints) => {node.options.options.variables.points = newPoints}}
 						width={150}
 						height={150}

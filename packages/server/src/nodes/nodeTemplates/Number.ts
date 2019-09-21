@@ -6,7 +6,7 @@ import { portTypeFactory } from '../ports/portTypes';
 import { OptionsBase } from '../nodeBase/NodeBase';
 import Flow from '../../flow/lib/Flow';
 
-export default class NumberNode extends NodeDataBase {
+export default class Number extends NodeDataBase {
   value: number;
 
   constructor(parentFlow: Flow, nodeId: string) {

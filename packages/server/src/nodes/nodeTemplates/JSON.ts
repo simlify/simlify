@@ -6,7 +6,7 @@ import { portTypeFactory } from '../ports/portTypes';
 import Flow from '../../flow/lib/Flow';
 import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
 
-export default class CreateJSON extends NodeTriggerBase {
+export default class JSON extends NodeTriggerBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);

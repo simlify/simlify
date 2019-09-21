@@ -7,7 +7,7 @@ import { OptionsBase } from '../nodeBase/NodeBase';
 import { logger } from '../../utilities';
 import Flow from '../../flow/lib/Flow';
 
-export default class RandomNode extends NodeDataBase {
+export default class RandomNumber extends NodeDataBase {
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
 

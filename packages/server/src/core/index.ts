@@ -37,13 +37,13 @@ export const init = async (_server : Express.Application) => {
   const currentFlow = flow.getFlowByIndex(0);
 
   const startNode = currentFlow.addNode('StartNode') as any;
-  startNode.setPosition(100, 100);
+  startNode.setPosition(480, 180);
 
-  const triggerCurveNode = currentFlow.addNode('TriggerCurveNode') as any;
-  triggerCurveNode.setPosition(300, 100);
+  const triggerCurveNode = currentFlow.addNode('TriggerCurve') as any;
+  triggerCurveNode.setPosition(480, 290);
 
-  const numberNode = currentFlow.addNode('RandomNode');
-  numberNode.setPosition(300, 300);
+  const numberNode = currentFlow.addNode('RandomNumber');
+  numberNode.setPosition(240, 290);
 
   startNode.connectOutputTriggerPort(triggerCurveNode.getTriggerInputPort());
   triggerCurveNode.connectOutputTriggerPort(startNode.getTriggerInputPort());

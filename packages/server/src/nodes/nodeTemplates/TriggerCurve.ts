@@ -7,7 +7,7 @@ import { OptionsBase } from '../nodeBase/NodeBase';
 import { logger } from '../../utilities';
 import Flow from '../../flow/lib/Flow';
 
-export default class TriggerCurveNode extends NodeTriggerBase {
+export default class TriggerCurve extends NodeTriggerBase {
   latestValue: number;
 
   constructor(parentFlow: Flow, nodeId: string) {
