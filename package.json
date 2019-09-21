@@ -3,6 +3,18 @@
   "devDependencies": {
     "lerna": "^3.16.4"
   },
+  "author": "Christian Bühlmeyer",
+  "keywords": [
+    "iiot",
+    "iot",
+    "simulator",
+    "curve",
+    "node",
+    "flow",
+    "mqtt",
+    "opc-ua",
+    "opcua"
+  ],
   "scripts": {
     "build": "lerna run build && lerna bootstrap",
     "start": "npm run build && cd packages/simlify && npm start"
