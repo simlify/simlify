@@ -15,6 +15,7 @@ const styles = {
 const TextField = (props) => {
   const {
     label = '',
+    id = '',
     defaultValue = '',
     onBlur = () => {},
     onFocus = () => {},
@@ -29,6 +30,7 @@ const TextField = (props) => {
 
   return (
     <TextFieldUi
+      id={id}
       variant="filled"
       className={props.classes.textFieldFilled}
       value={text}
