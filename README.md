@@ -2,6 +2,8 @@
 
 Simplify your IoT Simulations.
 
+![](./simlify.gif)
+
 ## Developer
 
 [NodeJS](https://nodejs.org/en/) has to be installed on your computer to start the program. Then follow these steps:
