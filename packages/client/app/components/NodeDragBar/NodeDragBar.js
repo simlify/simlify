@@ -9,7 +9,6 @@ const DragElement = (props) => {
       className="dragElement"
       draggable={true}
       onDragStart={event => {
-        console.log(event);
         event.dataTransfer.setData('diagram-node', JSON.stringify(props.nodeData));
       }}
     >

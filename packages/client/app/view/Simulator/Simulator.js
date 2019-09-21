@@ -18,7 +18,7 @@ class Simulator extends React.Component {
       availableNodes: {},
       flows: [],
       currentFlowIndex: 0,
-      selectedNode: {},
+      selectedNodeModel: {},
     };
 
     this.nodeAreaRef = React.createRef();
@@ -80,12 +80,12 @@ class Simulator extends React.Component {
   }
 
   handleSelectionChange(object, isSelected = false) {
-    isSelected ? this.setState({ selectedNode: object }) : {};
+    isSelected ? this.setState({ selectedNodeModel: object }) : {};
   }
 
   onNodeAreaEvent(event) {
     if (event.function === 'selectionChanged') {
-      this.handleSelectionChange(event.entity.options, event.isSelected);
+      this.handleSelectionChange(event.entity, event.isSelected);
     }
   }
 
@@ -94,13 +94,13 @@ class Simulator extends React.Component {
       flows,
       currentFlowIndex,
       availableNodes,
-      selectedNode
+      selectedNodeModel
     } = this.state;
 
     const currentFlow = flows[currentFlowIndex];
     const tabs = flows
-      .map(flow => ({ name: flow.name, icon: 'asdf' }));
-    tabs.push({ name: 'Add', icon: 'asdf' });
+      .map(flow => ({ name: flow.name, icon: 'none' }));
+    tabs.push({ name: 'Add', icon: 'none' });
 
     return (
       <div className="simulator">
@@ -126,7 +126,7 @@ class Simulator extends React.Component {
           />
         </div>
         <SideHelper
-          node={selectedNode}
+          nodeModel={selectedNodeModel}
         />
       </div>
     );

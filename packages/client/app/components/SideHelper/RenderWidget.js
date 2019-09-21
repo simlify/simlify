@@ -5,8 +5,7 @@ import { SimulationNodeModel } from '../NodeArea/SimulationNodes/SimulationNodeM
 import { SimulationNodeWidget } from '../NodeArea/SimulationNodes/SimulationNodeWidget.js';
 
 const RenderWidget = (props) => {
-  const { node } = props;
-  const nodeModel = new SimulationNodeModel(node, true);
+  const { nodeModel } = props;
   const engine = createEngine();
 
   return (

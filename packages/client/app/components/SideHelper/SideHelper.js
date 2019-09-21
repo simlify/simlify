@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TextField from '../TextField';
 import Button from '../Button';
 import Tabbar from '../TabBar';
@@ -8,16 +8,20 @@ import './SideHelper.scss';
 
 
 const SideHelper = (props) => {
-  const { node = {} } = props;
-  const { options } = node;
+  const { nodeModel = {} } = props;
+  const { options: nodeModelOptions = {} } = nodeModel;
+  const { options } = nodeModelOptions;
   const [selectedTab, changeTab] = useState(0);
 
   function onSettingSave(settings) {
     console.log(settings);
   }
+
+  function setLockedModel(isLocked) {
+    nodeModel.setLocked(isLocked)
+  }
   
   function renderSettings(settings) {
-    console.log(node);
     return (
       <div>
         {
@@ -25,6 +29,8 @@ const SideHelper = (props) => {
             label={setting.name}
             defaultValue={setting.value}
             onChange={(newValue) => setting.value = newValue}
+            onFocus={() => setLockedModel(true)}
+            onBlur={() => setLockedModel(false)}
             />)
         }
         <Button onClick={() => onSettingSave(settings)}>Save</Button>
@@ -32,14 +38,10 @@ const SideHelper = (props) => {
     )
   }
 
-  function generateId() {
-    return 'Id' + Math.random() * 100;
-  }
-
   function renderDescription(description) {
     return (
       <div className="sideHelper__body__description">
-        <RenderWidget id={generateId()} node={node}/>
+        <RenderWidget nodeModel={nodeModel}/>
         { description }
       </div>
     )
@@ -48,7 +50,7 @@ const SideHelper = (props) => {
   return (
     <div className="sideHelper">
       <Tabbar
-        tabs={[{ name: 'Description', icon: 'asdf' }, { name: 'Settings', icon: 'asdf' }]}
+        tabs={[{ name: 'Description', icon: 'none' }, { name: 'Settings', icon: 'none' }]}
         onTabChange={(selectedTab) => changeTab(selectedTab)}
       />
       <div className="sideHelper__body">

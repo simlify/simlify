@@ -13,7 +13,12 @@ const styles = {
 };
 
 const TextField = (props) => {
-  const { label = '', defaultValue = '' } = props;
+  const {
+    label = '',
+    defaultValue = '',
+    onBlur = () => {},
+    onFocus = () => {},
+  } = props;
 
   const [text, setText] = useState(defaultValue);
 
@@ -29,6 +34,8 @@ const TextField = (props) => {
       value={text}
       label={label}
       onChange={(event) => handleTextChange(event)}
+      onBlur={(event) => onBlur(event)}
+      onFocus={(event) => onFocus(event)}
     />
   );
 };

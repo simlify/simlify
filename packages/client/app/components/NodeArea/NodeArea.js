@@ -59,6 +59,7 @@ class NodeArea extends React.Component {
       eventDidFire: this.onEvent.bind(this),
     });
 
+    nodeData.nodeModel = nodeModel;
     return node;
   }
 
