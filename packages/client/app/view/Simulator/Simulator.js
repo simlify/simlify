@@ -80,7 +80,8 @@ class Simulator extends React.Component {
   }
 
   handleSelectionChange(object, isSelected = false) {
-    isSelected ? this.setState({ selectedNodeModel: object }) : {};
+    const selectedNodeModel = isSelected ? object : {};
+    this.setState({ selectedNodeModel });
   }
 
   onNodeAreaEvent(event) {
