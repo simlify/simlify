@@ -15,17 +15,6 @@
     "test": "jest"
   },
   "author": "Christian Bühlmeyer",
-  "keywords": [
-    "iiot",
-    "iot",
-    "simulator",
-    "curve",
-    "node",
-    "flow",
-    "mqtt",
-    "opc-ua",
-    "opcua"
-  ],
   "license": "MIT",
   "repository": {
     "type": "git",

@@ -9,9 +9,20 @@
   "scripts": {
     "compile": "",
     "clean": "rimraf dist",
-    "start": "node index.js"
+    "start": "node index.js",
   },
   "author": "Christian Bühlmeyer",
+  "keywords": [
+    "iiot",
+    "iot",
+    "simulator",
+    "curve",
+    "node",
+    "flow",
+    "mqtt",
+    "opc-ua",
+    "opcua"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,5 +33,8 @@
     "@simlify/server": "^0.1.1",
     "express": "^4.17.1"
   },
-  "gitHead": "d1830cea6923c9a1f856ba4fffbc6b9c1fa5ea50"
+  "gitHead": "d1830cea6923c9a1f856ba4fffbc6b9c1fa5ea50",
+  "devDependencies": {
+    "shx": "^0.3.2"
+  }
 }
