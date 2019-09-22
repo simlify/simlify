@@ -1,6 +1,6 @@
 {
   "name": "@simlify/simlify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "publishConfig": {
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@simlify/client": "^0.1.0",
-    "@simlify/server": "^0.1.0",
+    "@simlify/server": "^0.1.1",
     "express": "^4.17.1"
   },
   "gitHead": "d1830cea6923c9a1f856ba4fffbc6b9c1fa5ea50"
