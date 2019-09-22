@@ -11,7 +11,8 @@
     "clean": "rimraf dist",
     "compile": "tsc -p tsconfig.build.json",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "start": "node dist/index.js standalone"
+    "start": "node dist/index.js standalone",
+    "test": "jest"
   },
   "author": "Christian Bühlmeyer",
   "license": "MIT",
@@ -31,8 +32,15 @@
     "swagger-ui-express": "^4.0.7"
   },
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "@types/express": "^4.17.1",
+    "@types/jest": "^24.0.18",
     "@types/node": "^12.7.4",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "jest-environment-node": "^24.9.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.1.0",
     "tslint": "^5.19.0",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.6.2"

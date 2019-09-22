@@ -1,20 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import { CommonData } from '../../core';
 import Flow from '../../flow/lib/Flow';
 import { NodeBase } from '../nodeBase';
 
-let commonData: CommonData = null;
 let nodeRegistry: any = {};
-
-export const init = (_commonData: CommonData) => {
-  commonData = _commonData;
-};
 
 export const clear = () => { nodeRegistry = {}; };
 
 export const createNode = (parentFlow: Flow, nodeName: string, nodeId: string): NodeBase => {
-  return new nodeRegistry[nodeName](parentFlow, nodeId);
+  return new (nodeRegistry[nodeName])(parentFlow, nodeId);
 };
 
 export const registry = (): any => { return nodeRegistry; };
@@ -41,9 +35,8 @@ export const registerNodesFromFolder = (folderPath: string) => {
   return new Promise((resolve, reject) => {
     fs.readdir(folderPath, (err, files) => {
       if (err) return reject(err);
-
       files.forEach((fileName) => {
-        if (fileName.slice(-2) === 'js') {
+        if (fileName.slice(-2) === 'js' || fileName.slice(-2) === 'ts') {
           const pathToFile = path.join(folderPath, fileName);
           const node = require(pathToFile);
           registerNode(node.default.getNodeName(), node.default);

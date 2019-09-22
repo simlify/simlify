@@ -4,8 +4,6 @@ import { logger } from '../../utilities';
 import { NodeBase } from '../../nodes/nodeBase';
 import { Port } from '../../nodes/ports';
 
-const nodeRegistry = require('../../nodes/nodeRegistry');
-
 const MODULENAME = 'Flow';
 
 const generateHash = () => {
@@ -40,7 +38,7 @@ export default class Flow {
   }
 
   addNode(nodeName: string): NodeBase {
-    const node = nodeRegistry.createNode(this, nodeName);
+    const node = this.commonData.nodeRegistry.createNode(this, nodeName);
     this.nodes[node.getNodeId()] = node;
     return node;
   }
@@ -104,6 +102,7 @@ export default class Flow {
     this.name = serializedData.name;
     this.clearNodes();
     serializedData.nodes.forEach((serializedNode) => {
+      const nodeRegistry = this.commonData.nodeRegistry;
       const node = nodeRegistry.createNode(this, serializedNode.name, serializedNode.id);
       node.deserialize(serializedNode);
       this.nodes[serializedNode.id] = node;

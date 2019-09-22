@@ -5,5 +5,6 @@ module.exports = {
         server = _server;
         require('./endpoints/flows/flows.route')(server, commonData);
         require('./endpoints/nodes/nodes.route')(server, commonData);
+        return server;
     }
 }

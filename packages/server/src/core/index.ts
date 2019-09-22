@@ -15,7 +15,7 @@ export interface CommonData {
   flows: any;
 }
 
-const commonData : CommonData = {
+export const commonData : CommonData = {
   settings: {},
   get nodeRegistry() { return NodeRegistry; },
   get server() { return server; },
@@ -27,12 +27,10 @@ export const init = async (_server : Express.Application) => {
 
   try {
     const pathToNodes = path.join(__dirname, '../nodes/nodeTemplates');
-    NodeRegistry.init(commonData);
     await NodeRegistry.registerNodesFromFolder(pathToNodes);
   } catch (err) {
     logger.error(MODULENAME, err);
   }
-
   flow.init(commonData);
   const currentFlow = flow.getFlowByIndex(0);
 
@@ -54,5 +52,5 @@ export const init = async (_server : Express.Application) => {
 
   currentFlow.start();
 
-  await clientApi.init(server, commonData);
+  return await clientApi.init(server, commonData);
 };

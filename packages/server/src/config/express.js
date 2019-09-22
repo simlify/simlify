@@ -18,4 +18,4 @@ module.exports = (app) => {
     app.use(bodyParser.json());
 
     return app;
-}
+};
