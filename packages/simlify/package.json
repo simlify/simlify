@@ -9,7 +9,7 @@
   "scripts": {
     "compile": "",
     "clean": "rimraf dist",
-    "start": "node index.js",
+    "start": "node index.js"
   },
   "author": "Christian Bühlmeyer",
   "keywords": [

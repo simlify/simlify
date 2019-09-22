@@ -1,6 +1,7 @@
 {
   "name": "root",
   "devDependencies": {
+    "husky": "^3.0.5",
     "lerna": "^3.16.4"
   },
   "author": "Christian Bühlmeyer",
@@ -17,10 +18,17 @@
   ],
   "scripts": {
     "build": "lerna run build && lerna bootstrap",
-    "start": "npm run build && cd packages/simlify && npm start"
+    "lint": "lerna run lint",
+    "start": "npm run build && cd packages/simlify && npm start",
+    "test": "lerna run test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/simlify/simlify.git"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
   }
 }

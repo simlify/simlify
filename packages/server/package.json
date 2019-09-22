@@ -10,9 +10,11 @@
     "build": "npm run clean && npm run compile",
     "clean": "rimraf dist",
     "compile": "tsc -p tsconfig.build.json",
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
+    "prebuild": "npm run lint",
     "start": "node dist/index.js standalone",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "Christian Bühlmeyer",
   "license": "MIT",
