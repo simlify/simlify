@@ -2,7 +2,7 @@
 
 Simplify your IoT Simulations.
 
-![](../docs/simlify.gif)
+![](./docs/simlify.gif)
 
 ## Developer
 
