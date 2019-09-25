@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import shortid from 'shortid';
 
 import './TabBar.scss';
 
@@ -21,6 +22,7 @@ const TabBar = (props) => {
       {
         tabs.map((tab, index) => <Tab
             isActive={index === activeTab}
+            key={shortid.generate()}
             onClick={() => {
               setActiveTab(index);
               onTabChange(index);

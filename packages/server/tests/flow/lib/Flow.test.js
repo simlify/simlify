@@ -18,7 +18,6 @@ beforeAll(async (done) => {
 describe('Flow class', () => {
   it('is created', async done => {
     expect(flow).toBeDefined();
-    expect(false).toBeTruthy();
     done();
   });
 

@@ -24,7 +24,7 @@ class Simulator extends React.Component {
     this.nodeAreaRef = React.createRef();
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     api.getAvailableNodes()
       .then((availableNodes) => {
         this.setState({ availableNodes });

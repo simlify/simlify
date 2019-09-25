@@ -57,6 +57,10 @@ const Bezier = (props) => {
     return relativePoints.map((point, index) => index % 2 ? (1 - point) * width : point * height)
   }
 
+  const setHandlerDown = (handlerNumber) => {
+    setSelectedHandler(handlerNumber);
+  }
+
   const mouseEvents = {
     onMouseMove,
     onMouseUp,
@@ -81,16 +85,16 @@ const Bezier = (props) => {
         width={width}
         height={height}
         position={handler1Position}
-        onMouseUp={() => setSelectedHandler(null)}
-        onMouseDown={() => setSelectedHandler(1)}
+        onMouseUp={() => setHandlerDown(null)}
+        onMouseDown={() => setHandlerDown(1)}
         bottom
       />
       <DragHandle 
         width={width}
         height={height}
         position={handler2Position}
-        onMouseUp={() => setSelectedHandler(null)}
-        onMouseDown={() => setSelectedHandler(2)}
+        onMouseUp={() => setHandlerDown(null)}
+        onMouseDown={() => setHandlerDown(2)}
         right
       />
     </svg>

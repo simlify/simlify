@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="simulator"
+>
+  <div
+    className="simulator__nodeArea"
+  >
+    <div
+      className="simulator__buttonBar"
+    >
+      <div
+        className="simulator__buttonBar__container"
+      >
+        <div
+          aria-label="small contained button group"
+          className="MuiButtonGroup-root MuiButtonGroup-contained"
+          role="group"
+        >
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-sizeSmall"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Reset
+            </span>
+          </button>
+          <button
+            className="MuiButtonBase-root MuiButton-root MuiButtonGroup-grouped MuiButtonGroup-groupedContained MuiButton-contained MuiButton-sizeSmall"
+            disabled={false}
+            onBlur={[Function]}
+            onClick={[Function]}
+            onDragLeave={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyUp={[Function]}
+            onMouseDown={[Function]}
+            onMouseLeave={[Function]}
+            onMouseUp={[Function]}
+            onTouchEnd={[Function]}
+            onTouchMove={[Function]}
+            onTouchStart={[Function]}
+            tabIndex={0}
+            type="button"
+          >
+            <span
+              className="MuiButton-label"
+            >
+              Save
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      className="tabBar"
+    >
+      <div
+        className="tab tab--active"
+        onClick={[Function]}
+      >
+        Add
+      </div>
+    </div>
+    <div
+      className="nodeArea"
+      onDragOver={[Function]}
+      onDrop={[Function]}
+    >
+      <div
+        className="MuiPaper-root MuiPaper-elevation4 paper PaperComp-paper-32 nodeDragBar MuiPaper-rounded"
+      />
+      <div
+        className="nodeArea__canvas css-18f0176"
+        onMouseDown={[Function]}
+        onMouseMove={[Function]}
+        onMouseUp={[Function]}
+        onWheel={[Function]}
+      >
+        <svg
+          className="css-ye4wrg"
+          style={
+            Object {
+              "transform": "
+			translate(
+				0px,
+				0px)
+			scale(
+				1
+			)
+  	",
+            }
+          }
+        />
+        <div
+          className="css-ye4wrg"
+          style={
+            Object {
+              "transform": "
+			translate(
+				0px,
+				0px)
+			scale(
+				1
+			)
+  	",
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="sideHelper"
+  >
+    <div
+      className="tabBar"
+    >
+      <div
+        className="tab tab--active"
+        onClick={[Function]}
+      >
+        Description
+      </div>
+      <div
+        className="tab "
+        onClick={[Function]}
+      >
+        Settings
+      </div>
+    </div>
+    <div
+      className="sideHelper__body"
+    />
+  </div>
+</div>
+`;

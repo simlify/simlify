@@ -18,7 +18,7 @@ class NodeArea extends React.Component {
     this.createNodesAndLinks();
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if(this.props.options !== newProps.options) {
       this.clear();
       this.createNodesAndLinks(newProps.options);
