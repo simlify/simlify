@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Bezier from '../../Bezier';
+import shortid from 'shortid';
 import { SimPortLabel } from '../Ports/SimPortWidget';
 
 import './SimulationNodeStyle.scss';
@@ -48,7 +49,7 @@ export class SimulationNodeWidget extends React.Component {
 		}
 
 		return (
-			<div className={`simulationNode ${node.isSelected() ? 'simulationNode--selected' : ''}`}>
+			<div key={node.options.id} className={`simulationNode ${node.isSelected() ? 'simulationNode--selected' : ''}`}>
 				<div className="simulationNode__header">
 					<div className="simulationNode__titleNode">
 						{
@@ -83,14 +84,26 @@ export class SimulationNodeWidget extends React.Component {
 					<div className="simulationNode__ports simulationNode__inputPorts">
 					{
 						inputPorts.map((inputPort) => (
-							<SimPortLabel roundedLeft inactivePort={inActive} engine={this.props.engine} port={inputPort} />
+							<SimPortLabel
+								roundedLeft
+								inactivePort={inActive}
+								engine={this.props.engine}
+								port={inputPort}
+								key={shortid.generate()}
+							/>
 						))
 					}
 					</div>
 					<div className="simulationNode__ports simulationNode__outputPorts">
 					{
 						outputPorts.map((outputPort) => (
-							<SimPortLabel roundedRight inactivePort={inActive} engine={this.props.engine} port={outputPort} />
+							<SimPortLabel
+								roundedRight
+								inactivePort={inActive}
+								engine={this.props.engine}
+								port={outputPort}
+								key={shortid.generate()}
+							/>
 						))
 					}
 					</div>
