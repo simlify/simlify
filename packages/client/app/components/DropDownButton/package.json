@@ -1,0 +1,5 @@
+{
+    "name": "DropDownButton",
+    "private": true,
+    "main": "./DropDownButton.js"
+}

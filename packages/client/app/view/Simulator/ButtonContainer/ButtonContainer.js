@@ -10,33 +10,9 @@ import SideHelper from '../../components/SideHelper';
 
 import './Simulator.scss';
 
-class Simulator extends React.Component {
-  constructor() {
-    super();
+export default function ButtonContainer(props) {
 
-    this.state = {
-      availableNodes: {},
-      flows: [],
-      currentFlowIndex: 0,
-      selectedNodeModel: {},
-    };
-
-    this.nodeAreaRef = React.createRef();
-  }
-
-  UNSAFE_componentWillMount() {
-    api.getAvailableNodes()
-      .then((availableNodes) => {
-        this.setState({ availableNodes });
-      })
-      .catch((err) => {
-        console.log(err)
-      });
-
-      this.loadFlows();
-  }
-
-  loadFlows() {
+  const loadFlows = () => {
     api.getFlows()
     .then((flows) => {
       this.setState({ flows });
@@ -47,7 +23,7 @@ class Simulator extends React.Component {
   }
 
   getFlowSerialized() {
-    return this.nodeAreaRef.current.serialize();
+    return props.nodeAreaRef.current.serialize();
   }
 
   sendFlow() {
@@ -65,34 +41,6 @@ class Simulator extends React.Component {
       .catch(console.log);
   }
 
-  onTabChange(tabIndex) {
-    if (tabIndex > this.state.flows.length - 1) {
-      tabIndex = this.state.flows.length;
-      api.postFlow()
-      .then((newFlow) => {
-        this.state.flows.push(newFlow);
-        this.setState({ currentFlowIndex: tabIndex });
-      })
-      .catch(console.log);
-    } else {
-      this.setState({ currentFlowIndex: tabIndex });
-    }
-  }
-
-  handleSelectionChange(object, isSelected = false) {
-    const selectedNodeModel = isSelected ? object : {};
-    this.setState({ selectedNodeModel });
-  }
-
-  onNodeAreaEvent(event) {
-    if (event.function === 'selectionChanged') {
-      this.handleSelectionChange(event.entity, event.isSelected);
-    }
-    if (event.function === 'entityRemoved') {
-      this.handleSelectionChange(event.entity, false);
-    }
-  }
-
   render() {
     const {
       flows,
@@ -107,9 +55,7 @@ class Simulator extends React.Component {
     tabs.push({ name: 'Add', icon: 'none' });
 
     return (
-      <div className="simulator">
-        <div className="simulator__nodeArea">
-          <div className="simulator__buttonBar">
+          <div className="buttonBar">
             <div className="buttonContainer"/>
             <div className="buttonContainer">
               <ButtonGroup variant="contained" size="small" aria-label="small contained button group">

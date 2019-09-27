@@ -1,0 +1,29 @@
+@import "../../../assets/scss/variables.scss";
+
+.buttonBar {
+    top: 50px;
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .buttonContainer { 
+        &__right {
+            margin-right: 10px;
+        }
+    }
+
+    .button {
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    &__container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

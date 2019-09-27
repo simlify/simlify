@@ -1,0 +1,5 @@
+{
+    "name": "ButtonContainer",
+    "private": true,
+    "main": "./ButtonContainer.js"
+}
