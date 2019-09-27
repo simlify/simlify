@@ -2,7 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <button
-  className="MuiButtonBase-root MuiButton-root Button-buttonPrimary-1 MuiButton-contained"
+  className="MuiButtonBase-root MuiButton-root MuiButton-sizeSmall MuiButton-contained"
   disabled={false}
   onBlur={[Function]}
   onDragLeave={[Function]}
