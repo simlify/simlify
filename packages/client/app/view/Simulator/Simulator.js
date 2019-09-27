@@ -1,13 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import NodeArea from '../../components/NodeArea';
 import TabBar from '../../components/TabBar';
 import DropDownButton from '../../components/DropDownButton';
 import api from '../../../helper/api';
-import convertForApi from '../../../helper/convertForApi';
 import SideHelper from '../../components/SideHelper';
 import Menu from './Menu';
+import { flowActions } from '../../store/actions';
 
 import './Simulator.scss';
 
@@ -17,8 +18,6 @@ class Simulator extends React.Component {
 
     this.state = {
       availableNodes: {},
-      flows: [],
-      currentFlowIndex: 0,
       selectedNodeModel: {},
     };
 
@@ -38,13 +37,7 @@ class Simulator extends React.Component {
   }
 
   loadFlows() {
-    api.getFlows()
-    .then((flows) => {
-      this.setState({ flows });
-    })
-    .catch((err) => {
-      console.log(err)
-    });
+    this.props.dispatch(flowActions.loadFlow());
   }
 
   getFlowSerialized() {
@@ -53,30 +46,21 @@ class Simulator extends React.Component {
 
   sendFlow() {
     const serializedFlow = this.getFlowSerialized();
-    const currentFlow = this.state.flows[this.state.currentFlowIndex];
-    serializedFlow.id = currentFlow.id;
-    serializedFlow.name = currentFlow.name;
-    const serializedFlowForApi = convertForApi.convertFlow(serializedFlow);
-    api.putFlow(serializedFlowForApi)
-      .then(updatedFlow => {
-        const { flows, currentFlowIndex } = this.state;
-        flows[currentFlowIndex] = updatedFlow;
-        this.setState({ flows });
-      })
-      .catch(console.log);
+    this.props.dispatch(flowActions.sendFlow(serializedFlow));
   }
 
   onTabChange(tabIndex) {
-    if (tabIndex > this.state.flows.length - 1) {
-      tabIndex = this.state.flows.length;
+    const { flows } = this.props.flowData;
+    if (tabIndex > flows.length - 1) {
+      tabIndex = flows.length;
       api.postFlow()
       .then((newFlow) => {
-        this.state.flows.push(newFlow);
-        this.setState({ currentFlowIndex: tabIndex });
+        flows.push(newFlow);
+        this.props.dispatch(flowActions.changeCurrentFlowIndex(tabIndex));
       })
       .catch(console.log);
     } else {
-      this.setState({ currentFlowIndex: tabIndex });
+      this.props.dispatch(flowActions.changeCurrentFlowIndex(tabIndex));
     }
   }
 
@@ -96,11 +80,11 @@ class Simulator extends React.Component {
 
   render() {
     const {
-      flows,
-      currentFlowIndex,
       availableNodes,
       selectedNodeModel
     } = this.state;
+
+    const { flows, currentFlowIndex } = this.props.flowData;
 
     const currentFlow = flows[currentFlowIndex];
     const tabs = flows
@@ -143,4 +127,11 @@ class Simulator extends React.Component {
   }
 };
 
-export default Simulator;
+function mapStateToProps(state) {
+  const { flowData } = state;
+  return {
+    flowData,
+  };
+}
+
+export default connect(mapStateToProps)(Simulator);
