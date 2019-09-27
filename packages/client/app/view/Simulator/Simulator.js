@@ -7,6 +7,7 @@ import DropDownButton from '../../components/DropDownButton';
 import api from '../../../helper/api';
 import convertForApi from '../../../helper/convertForApi';
 import SideHelper from '../../components/SideHelper';
+import Menu from './Menu';
 
 import './Simulator.scss';
 
@@ -117,10 +118,10 @@ class Simulator extends React.Component {
                 <Button onClick={() => this.sendFlow()}>Save</Button>
               </ButtonGroup>
             </div>
-            <DropDownButton
+            <Menu
               className="buttonContainer buttonContainer__right"
-              items={['Import Flow', 'Export Flow']}
-              onClick={(index) => console.log(index)}
+              nodeArea={this.nodeAreaRef.current}
+              currentFlow={currentFlow}
             />
           </div>
           <TabBar
