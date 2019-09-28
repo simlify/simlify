@@ -8,36 +8,27 @@ import DropDownButton from '../../components/DropDownButton';
 import api from '../../../helper/api';
 import SideHelper from '../../components/SideHelper';
 import Menu from './Menu';
-import { flowActions } from '../../store/actions';
+import { flowActions, nodeActions } from '../../store/actions';
 
 import './Simulator.scss';
 
 class Simulator extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      availableNodes: {},
-      selectedNodeModel: {},
-    };
-
     this.nodeAreaRef = React.createRef();
   }
 
   UNSAFE_componentWillMount() {
-    api.getAvailableNodes()
-      .then((availableNodes) => {
-        this.setState({ availableNodes });
-      })
-      .catch((err) => {
-        console.log(err)
-      });
-
-      this.loadFlows();
+    this.loadAvailableNodes();
+    this.loadFlows();
   }
 
   loadFlows() {
     this.props.dispatch(flowActions.loadFlow());
+  }
+
+  loadAvailableNodes() {
+    this.props.dispatch(nodeActions.loadAvailableNodes());
   }
 
   getFlowSerialized() {
@@ -50,23 +41,12 @@ class Simulator extends React.Component {
   }
 
   onTabChange(tabIndex) {
-    const { flows } = this.props.flowData;
-    if (tabIndex > flows.length - 1) {
-      tabIndex = flows.length;
-      api.postFlow()
-      .then((newFlow) => {
-        flows.push(newFlow);
-        this.props.dispatch(flowActions.changeCurrentFlowIndex(tabIndex));
-      })
-      .catch(console.log);
-    } else {
-      this.props.dispatch(flowActions.changeCurrentFlowIndex(tabIndex));
-    }
+    this.props.dispatch(flowActions.changeCurrentFlowIndex(tabIndex));
   }
 
   handleSelectionChange(object, isSelected = false) {
     const selectedNodeModel = isSelected ? object : {};
-    this.setState({ selectedNodeModel });
+    this.props.dispatch(nodeActions.setSelectedNodeModel(selectedNodeModel));
   }
 
   onNodeAreaEvent(event) {
@@ -79,12 +59,8 @@ class Simulator extends React.Component {
   }
 
   render() {
-    const {
-      availableNodes,
-      selectedNodeModel
-    } = this.state;
-
     const { flows, currentFlowIndex } = this.props.flowData;
+    const { availableNodes, selectedNodeModel } = this.props.nodeData;
 
     const currentFlow = flows[currentFlowIndex];
     const tabs = flows
@@ -128,9 +104,10 @@ class Simulator extends React.Component {
 };
 
 function mapStateToProps(state) {
-  const { flowData } = state;
+  const { flowData, nodeData } = state;
   return {
     flowData,
+    nodeData,
   };
 }
 
