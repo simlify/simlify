@@ -11,9 +11,9 @@ const initialState = {
 export function nodeData(state = initialState, action) {
   switch (action.type) {
     case nodeConstants.UPDATE_AVAILABLE_NODES:
-      return Object.assign({}, state, { availableNodes: action.availableNodes })
+      return { ...state, availableNodes: action.availableNodes };
     case nodeConstants.SELECTED_NODE_MODEL:
-      return Object.assign({}, state, { selectedNodeModel: action.selectedNodeModel })
+      return { ...state, selectedNodeModel: action.selectedNodeModel };
     default:
       return state
   }

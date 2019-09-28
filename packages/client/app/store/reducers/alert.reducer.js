@@ -1,24 +1,34 @@
 export const alertConstants = {
-  SUCCESS: 'ALERT_SUCCESS',
-  ERROR: 'ALERT_ERROR',
-  CLEAR: 'ALERT_CLEAR'
+  ENQUEUE_SNACKBAR: 'ALERT_ENQUEUE_SNACKBAR',
+  REMOVE_SNACKBARO: 'ALERT_REMOVE_SNACKBAR',
 };
 
-export function alert(state = {}, action) {
+const initialState = {
+  notifications: [],
+};
+
+export function alert(state = initialState, action) {
   switch (action.type) {
-    case alertConstants.SUCCESS:
+    case alertConstants.ENQUEUE_SNACKBAR:
       return {
-        type: 'alert-success',
-        message: action.message
+        ...state,
+        notifications: [
+          ...state.notifications,
+          {
+            ...action.notification,
+          },
+        ],
       };
-    case alertConstants.ERROR:
+
+    case alertConstants.REMOVE_SNACKBARO:
       return {
-        type: 'alert-error',
-        message: action.message
+        ...state,
+        notifications: state.notifications.filter(
+          notification => notification.key !== action.key,
+        ),
       };
-    case alertConstants.CLEAR:
-      return {};
+
     default:
-      return state
+      return state;
   }
-}
+};

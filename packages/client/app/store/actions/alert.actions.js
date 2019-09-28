@@ -1,35 +1,27 @@
 import { alertConstants } from '../reducers/alert.reducer';
 
+
+
+function createNotification(message, variant = 'warning') {
+  return (
+    { 
+      type: alertConstants.ENQUEUE_SNACKBAR,
+      notification: {
+        key: new Date().getTime() + Math.random(),
+        message,
+        options: {
+          variant,
+        }
+      }
+    }
+  );
+}
+
 export const alertActions = {
-  success,
-  error,
-  clear
+  success: (message) => dispatch => dispatch(createNotification(message, 'success')),
+  info: (message) => dispatch => dispatch(createNotification(message, 'info')),
+  error: (message) => dispatch => dispatch(createNotification(message, 'error')),
+  warning: (message) => dispatch => dispatch(createNotification(message, 'warning')),
+  removeSnackbar: (key) => dispatch => dispatch({ type: alertConstants.REMOVE_SNACKBARO, key }),
 };
 
-let timeout;
-
-function success(message) {
-  return dispatch => {
-    if (timeout) clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      dispatch(clear());
-    }, 2000);
-    return dispatch({ type: alertConstants.SUCCESS, message });
-  }
-}
-
-function error(message) {
-  return dispatch => {
-    if (timeout) clearTimeout(timeout);
-
-    timeout = setTimeout(() => {
-      dispatch(clear());
-    }, 2000);
-    return dispatch({ type: alertConstants.ERROR, message });
-  }
-}
-
-function clear() {
-  return { type: alertConstants.CLEAR };
-}

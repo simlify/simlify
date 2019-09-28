@@ -2,7 +2,6 @@ import React from 'react';
 import DropDownButton from '../../../components/DropDownButton';
 import convertForApi from '../../../../helper/convertForApi';
 
-
 import './Menu.scss';
 
 export default function Menu(props) {
@@ -14,6 +13,7 @@ export default function Menu(props) {
     flowSerializedForExport.name = currentFlow.name;
     navigator.clipboard.writeText(JSON.stringify(flowSerializedForExport));
     console.log(flowSerializedForExport);
+
   };
 
   const items = [

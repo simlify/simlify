@@ -2,6 +2,7 @@ import { flowConstants } from '../reducers/flow.reducer';
 import api from '../../../helper/api';
 import { store } from '../../store';
 import convertForApi from '../../../helper/convertForApi';
+import { alertActions } from './index';
 
 export const flowActions = {
   loadFlow,
@@ -14,9 +15,11 @@ function loadFlow() {
     api.getFlows()
       .then((flows) => {
         dispatch({ type: flowConstants.UPDATE, flows });
+        dispatch(alertActions.success('Successfully loaded from server'));
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
+        dispatch(alertActions.error('Could not load from server'));
       });
   }
 }
@@ -33,9 +36,13 @@ function sendFlow(serializedFlow) {
     api.putFlow(serializedFlowForApi)
       .then(updatedFlow => {
         flows[currentFlowIndex] = updatedFlow;
+        dispatch(alertActions.success('Deployed to server'));
         dispatch({ type: flowConstants.UPDATE, flows });
       })
-      .catch(console.log);
+      .catch((err) => {
+        console.log(err);
+        dispatch(alertActions.error('Could not deploy to server'));
+      });
   }
 }
 
@@ -52,7 +59,10 @@ function changeCurrentFlowIndex(index) {
         dispatch({ type: flowConstants.UPDATE, flows });
         return dispatch({ type: flowConstants.CHANGE_FLOW_INDEX, index });
       })
-      .catch(console.log);
+      .catch((err) => {
+        console.log(err);
+        dispatch(alertActions.error('Could not deploy to server'));
+      });
     } else {
       return dispatch({ type: flowConstants.CHANGE_FLOW_INDEX, index });
     }

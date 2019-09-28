@@ -1,0 +1,5 @@
+{
+    "name": "Notifier",
+    "private": true,
+    "main": "./Notifier.js"
+}
