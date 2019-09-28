@@ -3,18 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Menu from '../Menu';
-import { alertActions, flowActions, nodeActions } from 'store/actions';
+import { flowActions } from 'store/actions';
 
 import './ButtonBar.scss';
 
-export default function ButtonBar({ nodeAreaRef }) {
+export default function ButtonBar({ nodeAreaRef, onImportClick }) {
   const { flows, currentFlowIndex } = useSelector(state => state.flowData);
   const dispatch = useDispatch();
   const currentFlow = flows[currentFlowIndex];
 
   const sendFlow = () => {
     const serializedFlow = nodeAreaRef.current.serialize();
-    dispatch(flowActions.sendFlow(serializedFlow));
+    dispatch(flowActions.updateFlow(serializedFlow));
   }
 
   const loadFlow = () => {
@@ -34,6 +34,7 @@ export default function ButtonBar({ nodeAreaRef }) {
         className="buttonContainer buttonContainer__right"
         nodeArea={nodeAreaRef.current}
         currentFlow={currentFlow}
+        onImportClick={onImportClick}
       />
     </div>
   );

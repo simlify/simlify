@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { flowActions, nodeActions } from 'store/actions';
+import { alertActions, flowActions, nodeActions } from 'store/actions';
 import NodeArea from 'components/NodeArea';
 import TabBar from 'components/TabBar';
 import SideHelper from 'components/SideHelper';
 import ButtonBar from './ButtonBar';
+import ImportDialog from './ImportDialog';
+import validateFlowJSON from 'helper/validateFlowJSON';
 
 import './Simulator.scss';
 
 class Simulator extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      isImportDialogOpen: false,
+    };
+
     this.nodeAreaRef = React.createRef();
   }
 
@@ -28,6 +35,19 @@ class Simulator extends React.Component {
     this.props.dispatch(nodeActions.setSelectedNodeModel(selectedNodeModel));
   }
 
+  setImportDialogActive(isOpen) {
+    this.setState({ isImportDialogOpen: isOpen });
+  }
+
+  importFlowData(jsonFlowString) {
+    const jsonFlow = validateFlowJSON(jsonFlowString);
+    if (!jsonFlow) {
+      this.props.dispatch(alertActions.error('Not a valid Flow'));
+    } else {
+      this.props.dispatch(flowActions.createNewFlow(jsonFlow));
+    }
+  }
+
   onNodeAreaEvent(event) {
     if (event.function === 'selectionChanged') {
       this.handleSelectionChange(event.entity, event.isSelected);
@@ -38,6 +58,7 @@ class Simulator extends React.Component {
   }
 
   render() {
+    const { isImportDialogOpen } = this.state;
     const { flows, currentFlowIndex } = this.props.flowData;
     const { availableNodes, selectedNodeModel } = this.props.nodeData;
 
@@ -48,9 +69,15 @@ class Simulator extends React.Component {
 
     return (
       <div className="simulator">
+        <ImportDialog
+          open={isImportDialogOpen}
+          onClose={() => this.setImportDialogActive(false)}
+          onImport={(jsonData) => this.importFlowData(jsonData)}
+        />
         <div className="simulator__nodeArea">
           <ButtonBar 
             nodeAreaRef={this.nodeAreaRef}
+            onImportClick={() => this.setImportDialogActive(true)}
           />
           <TabBar
             tabs={tabs}

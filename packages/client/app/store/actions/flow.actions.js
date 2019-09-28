@@ -6,7 +6,8 @@ import { alertActions } from './index';
 
 export const flowActions = {
   loadFlow,
-  sendFlow,
+  updateFlow,
+  createNewFlow,
   changeCurrentFlowIndex,
 };
 
@@ -24,7 +25,7 @@ function loadFlow() {
   }
 }
 
-function sendFlow(serializedFlow) {
+function updateFlow(serializedFlow) {
   return dispatch => {
     const storeData = store.getState();
     const { flows, currentFlowIndex } = storeData.flowData;
@@ -46,10 +47,28 @@ function sendFlow(serializedFlow) {
   }
 }
 
+function createNewFlow(flow) {
+  return dispatch => {
+    const storeData = store.getState();
+    const { flows } = storeData.flowData;
+
+    api.postFlow(flow)
+      .then((newFlow) => {
+        flows.push(newFlow);
+        dispatch({ type: flowConstants.UPDATE, flows });
+        return dispatch({ type: flowConstants.CHANGE_FLOW_INDEX, currentFlowIndex: flows.length });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(alertActions.error('Could not create flow on server'));
+      });
+  }
+}
+
 function changeCurrentFlowIndex(index) {
   return dispatch => {
     const storeData = store.getState();
-    const { flows, currentFlowIndex } = storeData.flowData;
+    const { flows } = storeData.flowData;
 
     if (index > flows.length - 1) {
       index = flows.length;

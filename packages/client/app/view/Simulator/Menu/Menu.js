@@ -5,15 +5,15 @@ import convertForApi from 'helper/convertForApi';
 import './Menu.scss';
 
 export default function Menu(props) {
-  const importFlow = () => console.log('import');
+  const importFlow = () => {
+    props.onImportClick();
+  };
   const exportFlow = () => {
     const { nodeArea, currentFlow } = props;
     const flowSerialized = nodeArea.serialize();
     const flowSerializedForExport = convertForApi.convertFlow(flowSerialized);
     flowSerializedForExport.name = currentFlow.name;
     navigator.clipboard.writeText(JSON.stringify(flowSerializedForExport));
-    console.log(flowSerializedForExport);
-
   };
 
   const items = [

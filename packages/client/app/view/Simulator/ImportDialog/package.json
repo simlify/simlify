@@ -1,0 +1,5 @@
+{
+    "name": "ImportDialog",
+    "private": true,
+    "main": "./ImportDialog.js"
+}
