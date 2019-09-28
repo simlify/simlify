@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { flowActions, nodeActions } from '../../store/actions';
-import NodeArea from '../../components/NodeArea';
-import TabBar from '../../components/TabBar';
-import SideHelper from '../../components/SideHelper';
+import { flowActions, nodeActions } from 'store/actions';
+import NodeArea from 'components/NodeArea';
+import TabBar from 'components/TabBar';
+import SideHelper from 'components/SideHelper';
 import ButtonBar from './ButtonBar';
 
 import './Simulator.scss';

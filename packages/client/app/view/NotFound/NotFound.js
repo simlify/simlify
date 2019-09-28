@@ -1,5 +1,5 @@
 import React from 'react';
-import Paper from '../../components/Paper';
+import Paper from 'components/Paper';
 
 import './NotFound.scss';
 

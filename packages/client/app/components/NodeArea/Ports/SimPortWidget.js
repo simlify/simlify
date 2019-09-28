@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PortWidget } from '@projectstorm/react-diagrams-core';
-import PortTextField from '../../PortTextField';
+import PortTextField from 'components/PortTextField';
 
 import './SimPortStyle.scss';
 

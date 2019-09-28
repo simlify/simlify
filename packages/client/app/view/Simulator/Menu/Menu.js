@@ -1,6 +1,6 @@
 import React from 'react';
-import DropDownButton from '../../../components/DropDownButton';
-import convertForApi from '../../../../helper/convertForApi';
+import DropDownButton from 'components/DropDownButton';
+import convertForApi from 'helper/convertForApi';
 
 import './Menu.scss';
 

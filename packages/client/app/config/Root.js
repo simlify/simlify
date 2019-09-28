@@ -7,14 +7,14 @@ import { SnackbarProvider } from 'notistack';
 import { store } from '../store';
 
 // Components
-import Header from '../components/Header';
-import Notifier from '../components/Notifier';
+import Header from 'components/Header';
+import Notifier from 'components/Notifier';
 
 // Views for routing
-import NotFound from '../view/NotFound';
-import Simulator from '../view/Simulator';
+import NotFound from 'view/NotFound';
+import Simulator from 'view/Simulator';
 
-import '../assets/scss/main.scss';
+import 'assets/scss/main.scss';
 
 const MainLayout = props => (
   <div className="mainLayout">

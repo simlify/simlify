@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 import Menu from '../Menu';
-import { alertActions, flowActions, nodeActions } from '../../../store/actions';
+import { alertActions, flowActions, nodeActions } from 'store/actions';
 
 import './ButtonBar.scss';
 

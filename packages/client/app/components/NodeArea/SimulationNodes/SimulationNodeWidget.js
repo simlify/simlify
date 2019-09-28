@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Bezier from '../../Bezier';
+import Bezier from 'components/Bezier';
 import shortid from 'shortid';
 import { SimPortLabel } from '../Ports/SimPortWidget';
 

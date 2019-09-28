@@ -54,6 +54,15 @@ const config = {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      app: path.resolve(__dirname, 'app/'),
+      assets: path.resolve(__dirname, 'app/assets/'),
+      components: path.resolve(__dirname, 'app/components/'),
+      config: path.resolve(__dirname, 'app/config/'),
+      store: path.resolve(__dirname, 'app/store/'),
+      view: path.resolve(__dirname, 'app/view/'),
+      helper: path.resolve(__dirname, 'helper/'),
+    }
   },
 
   module: {

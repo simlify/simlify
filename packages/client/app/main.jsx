@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import WebFont from 'webfontloader';
-import Root from './config/Root';
+import Root from 'config/Root';
 
 WebFont.load({
   google: {
@@ -12,8 +12,8 @@ WebFont.load({
 ReactDOM.render(<Root />, document.getElementById('root'));
 
 if (module.hot) {
-  module.hot.accept('./config/Root', () => {
-    const newApp = require('./config/Root').default;
+  module.hot.accept('config/Root', () => {
+    const newApp = require('config/Root').default;
     render(newApp);
   });
 }

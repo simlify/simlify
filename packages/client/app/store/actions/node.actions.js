@@ -1,5 +1,5 @@
 import { nodeConstants } from '../reducers/node.reducer';
-import api from '../../../helper/api';
+import api from 'helper/api';
 
 export const nodeActions = {
   loadAvailableNodes,

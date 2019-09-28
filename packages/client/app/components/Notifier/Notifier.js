@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { withSnackbar } from 'notistack';
-import { alertActions, flowActions, nodeActions } from '../../store/actions';
+import { alertActions, flowActions, nodeActions } from 'store/actions';
 
 import './Notifier.scss';
 

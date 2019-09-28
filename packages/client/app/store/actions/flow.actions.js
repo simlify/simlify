@@ -1,7 +1,7 @@
 import { flowConstants } from '../reducers/flow.reducer';
-import api from '../../../helper/api';
-import { store } from '../../store';
-import convertForApi from '../../../helper/convertForApi';
+import api from 'helper/api';
+import { store } from 'store';
+import convertForApi from 'helper/convertForApi';
 import { alertActions } from './index';
 
 export const flowActions = {

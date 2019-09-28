@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button';
+import Button from 'components/Button';
 import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
