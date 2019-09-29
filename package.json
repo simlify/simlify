@@ -17,7 +17,7 @@
     "opcua"
   ],
   "scripts": {
-    "build": "lerna run build && lerna bootstrap",
+    "build": "lerna bootstrap && lerna run build",
     "lint": "lerna run lint",
     "start": "npm run build && cd packages/simlify && npm start",
     "test": "lerna run test"
