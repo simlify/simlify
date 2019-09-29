@@ -18,7 +18,9 @@ module.exports = (commonData) => {
     const addFlow = (req, res) => {
         const flowDataSerialized = req.body;
         const addedFlow = commonData.flows.createNewFlow();
-        if (flowDataSerialized) addedFlow.deserialize(flowDataSerialized);
+        if (Object.entries(flowDataSerialized).length !== 0) {
+            addedFlow.deserialize(flowDataSerialized);
+        }
         addedFlow.start();
         res.send(addedFlow.serialize());
     }

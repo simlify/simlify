@@ -51,6 +51,8 @@ function createNewFlow(flow) {
   return dispatch => {
     const storeData = store.getState();
     const { flows } = storeData.flowData;
+    
+    if(!flow.name) flow.name = `Flow ${index}`;
 
     api.postFlow(flow)
       .then((newFlow) => {
@@ -72,6 +74,7 @@ function changeCurrentFlowIndex(index) {
 
     if (index > flows.length - 1) {
       index = flows.length;
+
       api.postFlow()
       .then((newFlow) => {
         flows.push(newFlow);

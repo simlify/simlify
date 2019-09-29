@@ -101,12 +101,14 @@ export default class Flow {
     this.id = serializedData.id;
     this.name = serializedData.name;
     this.clearNodes();
-    serializedData.nodes.forEach((serializedNode) => {
-      const nodeRegistry = this.commonData.nodeRegistry;
-      const node = nodeRegistry.createNode(this, serializedNode.name, serializedNode.id);
-      node.deserialize(serializedNode);
-      this.nodes[serializedNode.id] = node;
-    });
+    if (serializedData.nodes) {
+      serializedData.nodes.forEach((serializedNode) => {
+        const nodeRegistry = this.commonData.nodeRegistry;
+        const node = nodeRegistry.createNode(this, serializedNode.name, serializedNode.id);
+        node.deserialize(serializedNode);
+        this.nodes[serializedNode.id] = node;
+      });
+    }
   }
 
   clearNodes() {
