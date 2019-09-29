@@ -2,6 +2,7 @@ const core = require('./core');
 const express = require('./config/express');
 const logger = require('./utilities/logger');
 const swagger = require('./config/swagger');
+require('./config/polyfills');
 
 const MODULENAME = 'SERVER';
 const PORT = 3000;

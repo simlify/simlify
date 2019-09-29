@@ -1,14 +1,10 @@
-const crypto = require('crypto');
 import { CommonData } from '../../core';
 import { logger } from '../../utilities';
 import { NodeBase } from '../../nodes/nodeBase';
 import { Port } from '../../nodes/ports';
+import { generateId } from '../../utilities/flow';
 
 const MODULENAME = 'Flow';
-
-const generateHash = () => {
-  return crypto.randomBytes(20).toString('hex');
-};
 
 export default class Flow {
   id: string;
@@ -22,7 +18,7 @@ export default class Flow {
   onValueUpdateCallbacks: { [callerId: string]: Function };
 
   constructor(commonData: CommonData) {
-    this.id = generateHash();
+    this.id = generateId();
     this.name = `Flow ${commonData.flows.getAllFlows().length + 1}`;
 
     this.commonData = commonData;
@@ -66,6 +62,27 @@ export default class Flow {
     this.currentValue = calculationValue;
     this.percentageDone = percentageDone;
     Object.values(this.onValueUpdateCallbacks).forEach(callback => callback(calculationValue));
+  }
+
+  createNewIds() {
+    // Object for translation one id to another { fromId1: toId1, fromId2: toId2 }
+    const nodeIdTranslation: {[originId: string]: string} = {};
+
+    Object.entries(this.nodes).forEach(([key, value]) => {
+      const newNodeId = generateId();
+      nodeIdTranslation[key] = newNodeId;
+      this.nodes.renameProperty(key, newNodeId);
+      value.id = newNodeId;
+
+      value.inputPorts.forEach((port: any) => {
+        nodeIdTranslation[port.id] = generateId();
+        port.id = nodeIdTranslation[port.id];
+      });
+      value.outputPorts.forEach((port: any) => {
+        nodeIdTranslation[port.id] = generateId();
+        port.id = nodeIdTranslation[port.id];
+      });
+    });
   }
 
   getCurrentValue() {

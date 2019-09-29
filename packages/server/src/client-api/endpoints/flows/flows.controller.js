@@ -9,6 +9,7 @@ module.exports = (commonData) => {
     const updateFlow = (req, res) => {
         const updatedFlow = req.body;
         const currentFlow = commonData.flows.getFlowById(updatedFlow.id);
+        currentFlow.createNewIds();
         currentFlow.stop();
         currentFlow.deserialize(updatedFlow);
         currentFlow.start();
@@ -20,6 +21,7 @@ module.exports = (commonData) => {
         const addedFlow = commonData.flows.createNewFlow();
         if (Object.entries(flowDataSerialized).length !== 0) {
             addedFlow.deserialize(flowDataSerialized);
+            addedFlow.createNewIds();
         }
         addedFlow.start();
         res.send(addedFlow.serialize());

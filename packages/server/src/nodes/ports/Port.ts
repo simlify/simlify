@@ -1,13 +1,9 @@
 'use strict';
 
-import crypto from 'crypto';
 import { logger } from '../../utilities';
 import { PortType, PortValueType } from './portTypes';
 import { NodeBase } from '../nodeBase';
-
-const generateHash = (): string => {
-  return crypto.randomBytes(20).toString('hex');
-};
+import { generateId } from '../../utilities/flow';
 
 export class Port {
   id: string;
@@ -25,7 +21,7 @@ export class Port {
     value: any = 0,
     allowConnection = true
   ) {
-    this.id = generateHash();
+    this.id = generateId();
 
     if (!parentNode) logger.warning(this.constructor.name, 'No valid parent node in port constructor');
     this.parentNode = parentNode;
@@ -91,25 +87,4 @@ export class Port {
       portConnectedToPortId: this.portConnectedTo ? this.portConnectedTo.id : null,
     });
   }
-
-  /*deserialize(serializedData: any) {
-    const {
-      id,
-      label,
-      portType,
-      portConnectedToPortId
-    } = serializedData;
-
-    this.id = id;
-    this.label = label;
-
-    if (portType.value) this.portType.value = portType.value;
-    this.portType.type = portType.type;
-    this.portType.color = portType.color;
-
-    if (portConnectedToPortId) {
-      const connectedPort = this.parentNode.parentFlow.getPortWithId(portConnectedToPortId);
-      if (connectedPort) this.connectTo(connectedPort);
-    }
-  }*/
 }

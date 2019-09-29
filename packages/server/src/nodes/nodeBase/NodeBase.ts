@@ -1,14 +1,10 @@
 'use strict';
 
-import crypto from 'crypto';
 import { InputPort, OutputPort, Port } from '../ports';
 import Flow from '../../flow/lib/Flow';
+import { generateId } from '../../utilities/flow';
 
 const MODULENAME = 'NodeBase';
-
-const generateHash = () => {
-  return crypto.randomBytes(20).toString('hex');
-};
 
 export enum SettingType { Number, String, Options }
 
@@ -39,7 +35,7 @@ export class NodeBase {
   options: OptionsBase;
 
   constructor(parentFlow: Flow, nodeId: string, options?: OptionsBase) {
-    this.id = nodeId || generateHash();
+    this.id = nodeId || generateId();
     this.parentFlow = parentFlow;
     this.options = options;
 
