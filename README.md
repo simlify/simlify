@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/simlify/simlify/tree/master.svg?style=svg)](https://circleci.com/gh/simlify/simlify/tree/master)
+
 # Simlify
 
 Simplify your IoT Simulations.
