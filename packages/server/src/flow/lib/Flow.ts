@@ -3,9 +3,19 @@ import { logger } from '../../utilities';
 import { NodeBase } from '../../nodes/nodeBase';
 import { Port } from '../../nodes/ports';
 import { generateId } from '../../utilities/flow';
-import '../../config/polyfills';
 
 const MODULENAME = 'Flow';
+
+function renameProperty(object: any, oldName: string, newName: string): any {
+  if (oldName === newName) {
+    return object;
+  }
+  if (object.hasOwnProperty(oldName)) {
+    object[newName] = object[oldName];
+    delete object[oldName];
+  }
+  return object;
+}
 
 export default class Flow {
   id: string;
@@ -74,7 +84,8 @@ export default class Flow {
       nodeIdTranslation[key] = newNodeId;
 
       // renameProperty is a polyfill
-      this.nodes.renameProperty(key, newNodeId);
+      // this.nodes.renameProperty(key, newNodeId);
+      renameProperty(this.nodes, key, newNodeId);
       value.id = newNodeId;
 
       const changePortId = (port: any) => {
