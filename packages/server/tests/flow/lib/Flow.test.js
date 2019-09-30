@@ -4,6 +4,7 @@ const {init, commonData} = require('../../../src/core');
 
 const mockFlowData = require('./mockFlowData');
 let flow;
+let flow2;
 
 function sleepMs(milliseconds) {
   return new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -12,6 +13,7 @@ function sleepMs(milliseconds) {
 beforeAll(async (done) => {
   await init(express);
   flow = new Flow.default(commonData);
+  flow2 = new Flow.default(commonData);
   done();
 });
 
@@ -125,6 +127,17 @@ describe('Flow class', () => {
     flow.updateValue(testValue, foundNode, 0.1);
     const currentValue = flow.getCurrentValue();
     expect(currentValue === testValue).toBeTruthy();
+    done();
+  });
+
+  it('createNewIds() is generating new NodeIds and PortIds', async done => {
+    flow.deserialize(mockFlowData);
+    flow2.deserialize(mockFlowData);
+    flow2.createNewIds();
+
+    Object.entries(flow.nodes).forEach(([key, value]) => {
+      expect(flow2.nodes[key]).toBeUndefined();
+    });
     done();
   });
 });

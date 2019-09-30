@@ -3,6 +3,7 @@ import { logger } from '../../utilities';
 import { NodeBase } from '../../nodes/nodeBase';
 import { Port } from '../../nodes/ports';
 import { generateId } from '../../utilities/flow';
+import '../../config/polyfills';
 
 const MODULENAME = 'Flow';
 
@@ -71,6 +72,8 @@ export default class Flow {
     Object.entries(this.nodes).forEach(([key, value]) => {
       const newNodeId = generateId();
       nodeIdTranslation[key] = newNodeId;
+
+      // renameProperty is a polyfill
       this.nodes.renameProperty(key, newNodeId);
       value.id = newNodeId;
 
