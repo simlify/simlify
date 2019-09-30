@@ -77,13 +77,16 @@ export default class Flow {
       this.nodes.renameProperty(key, newNodeId);
       value.id = newNodeId;
 
-      value.inputPorts.forEach((port: any) => {
+      const changePortId = (port: any) => {
         nodeIdTranslation[port.id] = generateId();
         port.id = nodeIdTranslation[port.id];
+      };
+
+      value.inputPorts.forEach((port: any) => {
+        changePortId(port);
       });
       value.outputPorts.forEach((port: any) => {
-        nodeIdTranslation[port.id] = generateId();
-        port.id = nodeIdTranslation[port.id];
+        changePortId(port);
       });
     });
   }

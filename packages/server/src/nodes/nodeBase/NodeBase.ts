@@ -104,13 +104,11 @@ export class NodeBase {
   }
 
   getInputPortsByLabel(label: string): InputPort[] {
-    const foundPort = this.inputPorts.filter(inputPort => inputPort.label === label);
-    return foundPort;
+    return this.inputPorts.filter(inputPort => inputPort.label === label);
   }
 
   getOutputPortsByLabel(label: string): OutputPort[] {
-    const foundPorts = this.outputPorts.filter(outputPort => outputPort.label === label);
-    return foundPorts;
+    return this.outputPorts.filter(outputPort => outputPort.label === label);
   }
 
   async fetchInputPorts(): Promise<any> {

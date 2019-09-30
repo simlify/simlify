@@ -5,11 +5,12 @@ import { Port } from './Port';
 import { NodeBase } from '../nodeBase';
 
 export default class OutputPort extends Port {
-  constructor(parentNode: NodeBase,
-              portType: PortType = portTypeFactory.createNumberPortType(),
-              label: string = '',
-              value: any = 0,
-              allowConnection: boolean = true,
+  constructor(
+    parentNode: NodeBase,
+    portType: PortType = portTypeFactory.createNumberPortType(),
+    label: string = '',
+    value: any = 0,
+    allowConnection: boolean = true,
   ) {
     super(parentNode, portType, label, value, allowConnection);
     this.direction = 'out';

@@ -4,7 +4,21 @@ import DragHandle from './DragHandle';
 
 import './Bezier.scss';
 
-const Bezier = (props) => {
+function renderDragHandle(position, width, height, setHandlerDown, handlerId = 1) {
+  return(
+    <DragHandle 
+      width={width}
+      height={height}
+      position={position}
+      onMouseUp={() => setHandlerDown(null)}
+      onMouseDown={() => setHandlerDown(handlerId)}
+      right={handlerId === 2}
+      bottom={handlerId === 1}
+    />
+  );
+}
+
+function Bezier(props) {
   const {
     width,
     height,
@@ -81,22 +95,8 @@ const Bezier = (props) => {
         curveWidth={3}
         positions={createCurvePointArray()}
       />
-      <DragHandle 
-        width={width}
-        height={height}
-        position={handler1Position}
-        onMouseUp={() => setHandlerDown(null)}
-        onMouseDown={() => setHandlerDown(1)}
-        bottom
-      />
-      <DragHandle 
-        width={width}
-        height={height}
-        position={handler2Position}
-        onMouseUp={() => setHandlerDown(null)}
-        onMouseDown={() => setHandlerDown(2)}
-        right
-      />
+      { renderDragHandle(handler1Position, width, height, setHandlerDown, 1) }
+      { renderDragHandle(handler2Position, width, height, setHandlerDown, 2) }
     </svg>
   );
 };

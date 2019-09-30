@@ -9,6 +9,34 @@ import Popper from '@material-ui/core/Popper';
 
 import './DropDownButton.scss';
 
+function renderPopper(isOpen, anchorEl, props, handleMenuClick) {
+  return(
+    <Popper
+      open={isOpen}
+      keepMounted
+      transition
+      disablePortal
+      placement="bottom-end"
+      anchorEl={anchorEl}
+    >
+      {({ TransitionProps, placement }) => (
+        <Grow
+          {...TransitionProps}
+        >
+          <Paper id="menu-list-grow">
+            <MenuList>
+              {
+                props.items &&
+                props.items.map((item, index) => <MenuItem onClick={handleMenuClick(index)}>{item}</MenuItem>)
+              }
+            </MenuList>
+          </Paper>
+        </Grow>
+      )}
+    </Popper>
+  )
+}
+
 export default function DropDownButton(props) {
   const [isOpen, setOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,11 +46,8 @@ export default function DropDownButton(props) {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = event => {
-    if(!isOpen) {
-      return;
-    }
-    setOpen(false);
+  const handleClose = () => {
+    if(isOpen) setOpen(false);
   };
 
   const handleMenuClick = (index) => (event) => {
@@ -38,30 +63,7 @@ export default function DropDownButton(props) {
             { props.children || 'Menu' }
           </Button>
           {
-            isOpen &&
-            <Popper
-              open={isOpen}
-              keepMounted
-              transition
-              disablePortal
-              placement="bottom-end"
-              anchorEl={anchorEl}
-            >
-              {({ TransitionProps, placement }) => (
-                <Grow
-                  {...TransitionProps}
-                >
-                  <Paper id="menu-list-grow">
-                    <MenuList>
-                      {
-                        props.items &&
-                        props.items.map((item, index) => <MenuItem onClick={handleMenuClick(index)}>{item}</MenuItem>)
-                      }
-                    </MenuList>
-                  </Paper>
-                </Grow>
-              )}
-            </Popper>
+            isOpen && renderPopper(isOpen, anchorEl, props, handleMenuClick)
           }
         </div>
       </ClickAwayListener>
