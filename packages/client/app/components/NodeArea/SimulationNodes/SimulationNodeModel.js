@@ -1,4 +1,4 @@
-import { DefaultPortModel, NodeModel } from '@projectstorm/react-diagrams';
+import { NodeModel } from '@projectstorm/react-diagrams';
 import { SimPortModel } from '../Ports/SimPortModel';
 /**
  * Example of a custom model using pure javascript
@@ -12,37 +12,26 @@ export class SimulationNodeModel extends NodeModel {
 
 		if (createNewIds) this.createNewIds(options);
 
-		options.inputPorts.forEach((inputPort) => {
-			const { id, label, value, portType, allowConnection } = inputPort;
+		const createSimPortModel = (port, direction = 'in') => {
+			const { id, label, value, portType, allowConnection } = port;
+			return new SimPortModel({
+				in: true,
+				name: id,
+				label,
+				direction,
+				portType,
+				value,
+				allowConnection,
+			})
+		}
 
-			this.addPort(
-				new SimPortModel({
-					in: true,
-					name: id,
-					label: label,
-					direction: 'in',
-					portType,
-					value,
-					allowConnection
-				})
-			);
-		})
+		options.inputPorts.forEach((inputPort) => {
+			this.addPort(createSimPortModel(inputPort, 'in'));
+		});
 
 		options.outputPorts.forEach((outputPort) => {
-			const { id, label, value, portType, allowConnection } = outputPort;
-
-			this.addPort(
-				new SimPortModel({
-					in: true,
-					name: id,
-					label: label,
-					direction: 'out',
-					portType,
-					value,
-					allowConnection
-				})
-			);
-		})
+			this.addPort(createSimPortModel(outputPort, 'out'));
+		});
 
 		this.setPosition(options.positionX, options.positionY);
 	}
