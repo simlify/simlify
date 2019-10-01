@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/simlify/simlify/tree/master.svg?style=svg)](https://circleci.com/gh/simlify/simlify/tree/master)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 
 # Simlify
