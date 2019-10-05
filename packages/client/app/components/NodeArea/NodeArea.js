@@ -4,7 +4,6 @@ import { CanvasWidget } from '@projectstorm/react-canvas-core';
 import { SimulationNodeModel } from './SimulationNodes/SimulationNodeModel.js';
 import { SimulationNodeFactory } from './SimulationNodes/SimulationNodeFactory.js';
 import { SimPortFactory } from './Ports/SimPortFactory';
-import NodeDragBar from 'components/NodeDragBar';
 
 import './NodeArea.scss';
 
@@ -115,7 +114,6 @@ class NodeArea extends React.Component {
           event.preventDefault();
         }}
       >
-        <NodeDragBar availableNodes={availableNodes}/>
         <CanvasWidget
           className="nodeArea__canvas"
           engine={this.engine}

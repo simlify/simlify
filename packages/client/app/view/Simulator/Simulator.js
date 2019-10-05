@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { alertActions, flowActions, nodeActions } from 'store/actions';
 import NodeArea from 'components/NodeArea';
-import TabBar from 'components/TabBar';
+import SideComponents from 'components/SideComponents';
 import SideHelper from 'components/SideHelper';
+import TabBar from 'components/TabBar';
+
 import ButtonBar from './ButtonBar';
 import ImportDialog from './ImportDialog';
 import validateFlowJSON from 'helper/validateFlowJSON';
@@ -73,6 +75,9 @@ class Simulator extends React.Component {
           open={isImportDialogOpen}
           onClose={() => this.setImportDialogActive(false)}
           onImport={(jsonData) => this.importFlowData(jsonData)}
+        />
+        <SideComponents
+          availableNodes={availableNodes}
         />
         <div className="simulator__nodeArea">
           <ButtonBar 
