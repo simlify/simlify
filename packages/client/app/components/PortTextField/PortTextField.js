@@ -19,52 +19,47 @@ const styles = {
   }
 };
 
-const PortTextField = (props) => {
-  const {
-    height = 15,
-    defaultValue = 0,
-    disabled = false
-  } = props;
-  const [text, setText] = useState(defaultValue);
-
+function getInnerStyle(height, disabled) {
   const innerStyleMod = disabled
     ? styles.textFieldInnerDisabled
     : styles.textFieldInnerEnabled;
 
+  return ({
+    style: Object.assign({
+      height,
+      padding: '0 3px',
+      fontSize: '8px',
+    }, innerStyleMod)  
+  })
+}
+
+const PortTextField = ({
+  height = 15,
+  defaultValue = 0,
+  disabled = false,
+  onFocus = (event) => {},
+  onBlur = (event) => {},
+  onChange = (value) => {},
+  classes = {},
+}) => {
+  const [text, setText] = useState(defaultValue);
+
   function handleTextChange(event) {
-    event.stopPropagation();
-    event.preventDefault();
     setText(event.target.value);
-    if (props.onChange) props.onChange(event.target.value);
-  }
-
-  function onFocus(event) {
-    if (props.onFocus) props.onFocus(event);
-  }
-
-  function onBlur(event) {
-    if (props.onBlur) props.onBlur(event);
+    onChange(event.target.value);
   }
 
   return (
     <TextFieldUi
       variant="filled"
-      className={props.classes.textFieldFilled}
+      className={classes.textFieldFilled}
       style={{ height }}
       value={ disabled ? '-' : text }
       onChange={(event) => handleTextChange(event)}
       disabled={disabled}
       onFocus={(event) => onFocus(event)}
       onBlur={(event) => onBlur(event)}
-
-      /* styles the input component */
-      inputProps={{
-        style: Object.assign({
-          height,
-          padding: '0 3px',
-          fontSize: '8px',
-        }, innerStyleMod)  
-      }}
+      inputProps={getInnerStyle(height, disabled)}
     />
   );
 };

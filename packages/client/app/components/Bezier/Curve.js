@@ -1,12 +1,10 @@
 import React from "react";
 
-const Curve = (props) => {
-
-  const {
-    curveColor,
-    curveWidth,
-    positions,
-  } = props;
+const Curve = ({
+  curveColor,
+  curveWidth,
+  positions,
+}) => {
 
   const [
     originX,

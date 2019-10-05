@@ -16,6 +16,16 @@ function renderDescription(description, nodeModel) {
   )
 }
 
+function renderSettings(settings, nodeModel, nodeModelOptions) {
+  return (
+    <SideHelperSettings
+      settings={options.settings}
+      nodeModel={nodeModel}
+      nodeModelOptions={nodeModelOptions}
+    />
+  )
+}
+
 const SideHelper = (props) => {
   const { nodeModel = {} } = props;
   const { options: nodeModelOptions = {} } = nodeModel;
@@ -35,11 +45,7 @@ const SideHelper = (props) => {
         }
         {
           selectedTab === 1 && options && options.settings &&
-          <SideHelperSettings
-            settings={options.settings}
-            nodeModel={nodeModel}
-            nodeModelOptions={nodeModelOptions}
-          />
+          renderSettings(settings, nodeModel, nodeModelOptions)
         }
       </div>
     </div>

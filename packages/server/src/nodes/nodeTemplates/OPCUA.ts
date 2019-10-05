@@ -62,34 +62,38 @@ export default class OPCUA extends NodeTriggerBase {
     opcuaManager.deregisterValue(port, resourcePath, deviceName, variableName);
   }
 
+  createSettings() {
+    return [
+      {
+        name: 'Port',
+        description: 'Port of the OPCUA server',
+        settingType: SettingType.Number,
+        value: 4334
+      },
+      {
+        name: 'ResourcePath',
+        description: 'Resource path on the server',
+        settingType: SettingType.String,
+        value: '/UA/measurements'
+      },
+      {
+        name: 'BrowseName',
+        description: 'Name of the Object',
+        settingType: SettingType.String,
+        value: 'Simlify'
+      },
+      {
+        name: 'VariableName',
+        description: 'Variable name',
+        settingType: SettingType.String,
+        value: this.parentFlow ? this.parentFlow.name : 'Flow1',
+      }
+    ];
+  }
+
   createOptions() {
     const options: OptionsBase = {
-      settings: [
-        {
-          name: 'Port',
-          description: 'Port of the OPCUA server',
-          settingType: SettingType.Number,
-          value: 4334
-        },
-        {
-          name: 'ResourcePath',
-          description: 'Resource path on the server',
-          settingType: SettingType.String,
-          value: '/UA/measurements'
-        },
-        {
-          name: 'BrowseName',
-          description: 'Name of the Object',
-          settingType: SettingType.String,
-          value: 'Simlify'
-        },
-        {
-          name: 'VariableName',
-          description: 'Variable name',
-          settingType: SettingType.String,
-          value: this.parentFlow ? this.parentFlow.name : 'Flow1',
-        }
-      ],
+      settings: this.createSettings(),
       variables: {},
       description: `This output node allows setup an OPC-UA server. \
       Check the settings page to configure the server for your needs. \

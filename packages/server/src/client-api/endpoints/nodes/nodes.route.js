@@ -15,7 +15,7 @@
  */
 
 module.exports = (server, commonData) => {
-    const controller = require('./nodes.controller.js')(commonData);
+    const controller = require('./nodes.controller.js');
 
     /**
     * @swagger
@@ -32,7 +32,7 @@ module.exports = (server, commonData) => {
     */
    
     server.get('/api/v1/nodes/list',
-        controller.getNodeList);
+        controller.getNodeList(commonData));
     server.options('/api/v1/nodes/list');
 
     /**
@@ -63,7 +63,7 @@ module.exports = (server, commonData) => {
     */
    
     server.post('/api/v1/flows/:flowId/nodes/add/:nodeName',
-        controller.addNodeToFlow
+        controller.addNodeToFlow(commonData)
     );
     server.options('/api/v1/flows/:flowId/nodes/add/:nodeName');
 
@@ -95,7 +95,7 @@ module.exports = (server, commonData) => {
     */
    
     server.post('/api/v1/flows/:flowId/nodes/connect',
-        controller.connectNodes
+        controller.connectNodes(commonData)
     );
     server.options('/api/v1/flows/:flowId/nodes/connect');
 

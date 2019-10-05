@@ -8,6 +8,19 @@ import TextField from '@material-ui/core/TextField';
 
 import './ImportDialog.scss';
 
+function renderActions(handleClose, handleImport) {
+  return(
+    <DialogActions>
+      <Button onClick={handleClose} color="primary">
+        Cancle
+      </Button>
+      <Button onClick={handleImport} color="primary">
+        Import
+      </Button>
+    </DialogActions>
+  )
+}
+
 export default function ImportDialog(props) {
   const { onClose, onImport, open } = props;
   let jsonFieldRef;
@@ -44,14 +57,7 @@ export default function ImportDialog(props) {
           style={{width: '100%'}}
         />
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose} color="primary">
-          Cancle
-        </Button>
-        <Button onClick={handleImport} color="primary">
-          Import
-        </Button>
-      </DialogActions>
+      { renderActions(handleClose, handleImport) }
     </Dialog>
   );
 };

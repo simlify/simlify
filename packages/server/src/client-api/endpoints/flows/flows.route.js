@@ -1,5 +1,5 @@
 module.exports = (server, commonData) => {
-    const controller = require('./flows.controller.js')(commonData);
+    const controller = require('./flows.controller.js');
 
     /**
     * @swagger
@@ -15,7 +15,7 @@ module.exports = (server, commonData) => {
     *         description: An object containing all flows
     */
     server.get('/api/v1/flows/all',
-        controller.getAllFlows);
+        controller.getAllFlows(commonData));
     server.options('/api/v1/flows/all');
 
     /**
@@ -37,7 +37,7 @@ module.exports = (server, commonData) => {
     *         description: The Flow was successfully updated
     */
     server.put('/api/v1/flows',
-        controller.updateFlow);
+        controller.updateFlow(commonData));
     server.options('/api/v1/flows');
 
     /**
@@ -59,6 +59,6 @@ module.exports = (server, commonData) => {
     *         description: The Flow was successfully updated
     */
     server.post('/api/v1/flows',
-      controller.addFlow);
+      controller.addFlow(commonData));
     server.options('/api/v1/flows');
 }

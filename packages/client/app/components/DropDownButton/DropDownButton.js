@@ -9,6 +9,23 @@ import Popper from '@material-ui/core/Popper';
 
 import './DropDownButton.scss';
 
+function dropDownList(props, handleMenuClick, { TransitionProps, placement }) {
+  return(
+    <Grow
+      {...TransitionProps}
+    >
+      <Paper id="menu-list-grow">
+        <MenuList>
+          {
+            props.items &&
+            props.items.map((item, index) => <MenuItem onClick={handleMenuClick(index)}>{item}</MenuItem>)
+          }
+        </MenuList>
+      </Paper>
+    </Grow>
+  );
+}
+
 function renderPopper(isOpen, anchorEl, props, handleMenuClick) {
   return(
     <Popper
@@ -19,20 +36,9 @@ function renderPopper(isOpen, anchorEl, props, handleMenuClick) {
       placement="bottom-end"
       anchorEl={anchorEl}
     >
-      {({ TransitionProps, placement }) => (
-        <Grow
-          {...TransitionProps}
-        >
-          <Paper id="menu-list-grow">
-            <MenuList>
-              {
-                props.items &&
-                props.items.map((item, index) => <MenuItem onClick={handleMenuClick(index)}>{item}</MenuItem>)
-              }
-            </MenuList>
-          </Paper>
-        </Grow>
-      )}
+      {
+        ({ TransitionProps, placement }) => dropDownList(props, handleMenuClick, { TransitionProps, placement })
+      }
     </Popper>
   )
 }

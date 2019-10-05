@@ -8,14 +8,13 @@ import 'prismjs/components/prism-markup';
 import initialJSON from './initialJSON';
 import './JSONeditor.scss';
 
-const JSONeditor = (props) => {
-  const {
-    onBlur = () => {},
-    onFocus = () => {},
-    onChange = () => {},
-    initialValue = initialJSON,
-  } = props;
-
+const JSONeditor = ({
+  onBlur = () => {},
+  onFocus = () => {},
+  onChange = () => {},
+  initialValue = initialJSON,
+}) => {
+  
   const [code, setCode] = useState(initialValue);
 
   const handleValueChange = (newCode) => {
