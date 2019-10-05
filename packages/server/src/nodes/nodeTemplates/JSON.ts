@@ -6,12 +6,26 @@ import { portTypeFactory } from '../ports/portTypes';
 import Flow from '../../flow/lib/Flow';
 import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
 
+const initialJSON = `{
+  "measurement": value1,
+  "aString": "The answer",
+  "aNumber": 43,
+  "aBoolean": true,
+}`;
+
 export default class JSON extends NodeTriggerBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
 
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'measurement1', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input1', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input2', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input3', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input4', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input5', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input6', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input7', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input8', 0));
 
     super.addPort(new OutputPort(
         this,
@@ -25,8 +39,11 @@ export default class JSON extends NodeTriggerBase {
         {
           name: 'JSON',
           description: 'Template for generating a JSON object from the inputs',
-          settingType: SettingType.String,
-          value: '{}'
+          settingType: SettingType.JSON,
+          value: initialJSON,
+          settingOptions: {
+            multiline: true,
+          }
         }
       ],
       variables: {},
@@ -37,18 +54,28 @@ export default class JSON extends NodeTriggerBase {
 
   generateJSON(inputPortValues: any) {
     const {
-      measurement1,
-      measurement2,
-      measurement3,
+      input1,
+      input2,
+      input3,
+      input4,
+      input5,
+      input6,
+      input7,
+      input8,
     } = inputPortValues;
     const jsonString = this.getSetting('JSON').value || '{ }';
 
     // In order to have arguments named the jsonString has to be wrapped
-    const body = `{ return function(input1, input2, input3){ return(${jsonString}) }}`;
+    const body = `{
+      return function(input1, input2, input3, input4, input5, input6, input7, input8){
+        return(${jsonString})
+      }
+    }`;
 
     // tslint:disable-next-line
     const func = new Function(body);
-    const jsonOutput = func.call(null).call(null, measurement1, measurement2, measurement3);
+    const jsonOutput = func.call(null)
+      .call(null, input1, input2, input3, input4, input5, input6, input7, input8);
     return jsonOutput;
   }
 

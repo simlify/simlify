@@ -6,7 +6,12 @@ import { generateId } from '../../utilities/flow';
 
 const MODULENAME = 'NodeBase';
 
-export enum SettingType { Number, String, Options }
+export enum SettingType {
+  Number = 'Number',
+  String = 'String',
+  JSON = 'JSON',
+  Options = 'Options',
+}
 
 export enum VisualisationType { BezierCurve = 'BezierCurve', LineChart= 'LineChart' }
 
@@ -15,7 +20,7 @@ export interface Setting {
   description: string;
   settingType: SettingType;
   value: string | number;
-  settingOptions?: string[];
+  settingOptions?: { [property: string] : any };
 }
 
 export interface OptionsBase {

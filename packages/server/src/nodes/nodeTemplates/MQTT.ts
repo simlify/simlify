@@ -80,6 +80,9 @@ export default class MQTT extends NodeTriggerBase {
           name: 'password',
           description: 'Password of the client',
           settingType: SettingType.String,
+          settingOptions: {
+            type: 'password',
+          },
           value: 'secret'
         },
       ],

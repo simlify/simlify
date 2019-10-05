@@ -1,0 +1,5 @@
+{
+    "name": "JSONeditor",
+    "private": true,
+    "main": "./JSONeditor.js"
+}

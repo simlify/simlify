@@ -13,6 +13,10 @@
         color: white;
         font-size: 14px;
 
+        .MuiInputBase-input {
+            color: white!important;
+        }
+
         label, input {
             color: white!important;
         }

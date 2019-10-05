@@ -3,50 +3,24 @@ import TextField from 'components/TextField';
 import Button from 'components/Button';
 import Tabbar from 'components/TabBar';
 import RenderWidget from './RenderWidget';
+import SideHelperSettings from './SideHelperSettings';
 
 import './SideHelper.scss';
 
+function renderDescription(description, nodeModel) {
+  return (
+    <div className="sideHelper__body__description">
+      <RenderWidget nodeModel={nodeModel}/>
+      { description }
+    </div>
+  )
+}
 
 const SideHelper = (props) => {
   const { nodeModel = {} } = props;
   const { options: nodeModelOptions = {} } = nodeModel;
   const { options } = nodeModelOptions;
   const [selectedTab, changeTab] = useState(0);
-
-  function onSettingSave(settings) {
-    console.log(settings);
-  }
-
-  function setLockedModel(isLocked) {
-    nodeModel.setLocked(isLocked)
-  }
-  
-  function renderSettings(settings) {
-    return (
-      <div>
-        {
-          settings.map(setting => <TextField
-            id={`${nodeModelOptions.id}-${setting.name}`}
-            label={setting.name}
-            defaultValue={setting.value}
-            onChange={(newValue) => setting.value = newValue}
-            onFocus={() => setLockedModel(true)}
-            onBlur={() => setLockedModel(false)}
-            />)
-        }
-        <Button onClick={() => onSettingSave(settings)}>Save</Button>
-      </div>
-    )
-  }
-
-  function renderDescription(description) {
-    return (
-      <div className="sideHelper__body__description">
-        <RenderWidget nodeModel={nodeModel}/>
-        { description }
-      </div>
-    )
-  }
 
   return (
     <div className="sideHelper">
@@ -56,10 +30,16 @@ const SideHelper = (props) => {
       />
       <div className="sideHelper__body" key={`${nodeModelOptions.id}`}>
         {
-          selectedTab === 0 && options && options.description && renderDescription(options.description)
+          selectedTab === 0 && options && options.description &&
+          renderDescription(options.description, nodeModel)
         }
         {
-          selectedTab === 1 && options && options.settings && renderSettings(options.settings)
+          selectedTab === 1 && options && options.settings &&
+          <SideHelperSettings
+            settings={options.settings}
+            nodeModel={nodeModel}
+            nodeModelOptions={nodeModelOptions}
+          />
         }
       </div>
     </div>

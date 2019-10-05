@@ -19,6 +19,8 @@ const TextField = (props) => {
     defaultValue = '',
     onBlur = () => {},
     onFocus = () => {},
+    multiline,
+    type
   } = props;
 
   const [text, setText] = useState(defaultValue);
@@ -38,6 +40,9 @@ const TextField = (props) => {
       onChange={(event) => handleTextChange(event)}
       onBlur={(event) => onBlur(event)}
       onFocus={(event) => onFocus(event)}
+      multiline={multiline}
+      maxRows={5}
+      type={type === 'password' ? 'password' : 'text'}
     />
   );
 };
