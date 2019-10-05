@@ -1,7 +1,5 @@
 import React from 'react';
 import createEngine from '@projectstorm/react-diagrams';
-import { CanvasWidget } from '@projectstorm/react-canvas-core';
-import { SimulationNodeModel } from 'components/NodeArea/SimulationNodes/SimulationNodeModel';
 import { SimulationNodeWidget } from 'components/NodeArea/SimulationNodes/SimulationNodeWidget';
 
 const RenderWidget = (props) => {

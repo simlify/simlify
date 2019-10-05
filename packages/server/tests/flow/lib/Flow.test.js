@@ -141,3 +141,10 @@ describe('Flow class', () => {
     done();
   });
 });
+
+describe('Flow class', () => {
+  it('is created', async done => {
+    expect(true).toBeTruthy();
+    done();
+  });
+})
