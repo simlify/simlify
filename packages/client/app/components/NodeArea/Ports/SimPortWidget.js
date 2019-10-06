@@ -5,7 +5,13 @@ import Switch from 'components/Switch';
 
 import './SimPortStyle.scss';
 
-function renderPort(engine, port, roundedLeft, roundedRight, inactivePort = false) {
+function renderPort({
+    engine,
+    port,
+    roundedLeft,
+    roundedRight,
+    inactivePort = false,
+}) {
 	const { color: portBackgroundColor } = port.portType;
 	const className = `${roundedLeft ? 'simPortLabel__port--left' : ''} \
 		${roundedRight ? 'simPortLabel__port--right' : ''} simPortLabel__port`;
@@ -29,31 +35,27 @@ function renderPort(engine, port, roundedLeft, roundedRight, inactivePort = fals
 	)
 }
 
-function renderInputElement(port, isConnected) {
-	return (
-		<PortTextField
+function renderElement(Element, port, isConnected) {
+    return (
+		<Element
 			disabled={isConnected}
 		    defaultValue={port.portType.value}
 			onChange={(value) => port.portType.value = value}
 			onFocus={() => port.parent.setLocked(true)}
 			onBlur={() => port.parent.setLocked(false)}
 		/>
-	)
+	) 
+}
+
+function renderInputElement(port, isConnected) {
+    return renderElement(PortTextField, port, isConnected);
 }
 
 function renderBoolenElement(port, isConnected) {
-	return (
-		<Switch
-			disabled={isConnected}
-		    defaultValue={port.portType.value}
-			onChange={(value) => port.portType.value = value}
-			onFocus={() => port.parent.setLocked(true)}
-			onBlur={() => port.parent.setLocked(false)}
-		/>
-	)
+    return renderElement(Switch, port, isConnected);
 }
 
-function renderLabel(isEditable, port, isConnected, isDisabled) {
+function renderLabel({ isEditable, port, isConnected, isDisabled }) {
     let inputElement = null;
     
 	if (isEditable && port.direction === 'in') {
@@ -88,8 +90,8 @@ export function SimPortLabel({ port,
 
 	const { isEditable } = port.portType;
 
-	const portElem = renderPort(engine, port, roundedLeft, roundedRight, inactivePort);
-	const labelElem = renderLabel(isEditable, port, isConnected, disableLabel);
+	const portElem = renderPort({ engine, port, roundedLeft, roundedRight, inactivePort });
+	const labelElem = renderLabel({ isEditable, port, isConnected, disableLabel });
 
 	return (
 		<div className="simPortLabel">
