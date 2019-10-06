@@ -1,0 +1,12 @@
+@import "assets/scss/variables.scss";
+
+.switch {
+  display: flex;
+
+  &__label {
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
