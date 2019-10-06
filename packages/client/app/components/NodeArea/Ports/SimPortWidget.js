@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { PortWidget } from '@projectstorm/react-diagrams-core';
 import PortTextField from 'components/PortTextField';
+import Switch from 'components/Switch';
 
 import './SimPortStyle.scss';
 
@@ -28,20 +29,49 @@ function renderPort(engine, port, roundedLeft, roundedRight, inactivePort = fals
 	)
 }
 
+function renderInputElement(port, isConnected) {
+	return (
+		<PortTextField
+			disabled={isConnected}
+		    defaultValue={port.portType.value}
+			onChange={(value) => port.portType.value = value}
+			onFocus={() => port.parent.setLocked(true)}
+			onBlur={() => port.parent.setLocked(false)}
+		/>
+	)
+}
+
+function renderBoolenElement(port, isConnected) {
+	return (
+		<Switch
+			disabled={isConnected}
+		    defaultValue={port.portType.value}
+			onChange={(value) => port.portType.value = value}
+			onFocus={() => port.parent.setLocked(true)}
+			onBlur={() => port.parent.setLocked(false)}
+		/>
+	)
+}
+
 function renderLabel(isEditable, port, isConnected, isDisabled) {
+    let inputElement = null;
+    
+	if (isEditable && port.direction === 'in') {
+		switch(port.portType.type) {
+			case 'number':
+                inputElement = renderInputElement(port, isConnected);
+                break;
+            case 'boolean':
+                inputElement = renderBoolenElement(port, isConnected);
+                break;
+            default:
+                inputElement = null;
+		}
+    }
+    
 	return(
 		<div className="simPortLabel__label">
-			{
-				isEditable &&
-				port.direction === 'in' &&
-				<PortTextField
-					disabled={isConnected}
-					defaultValue={port.portType.value}
-					onChange={(value) => port.portType.value = value}
-					onFocus={() => port.parent.setLocked(true)}
-					onBlur={() => port.parent.setLocked(false)}
-				/>
-			}
+			{ inputElement }
 			{ !isDisabled && port.options.label }
 		</div>
 	)

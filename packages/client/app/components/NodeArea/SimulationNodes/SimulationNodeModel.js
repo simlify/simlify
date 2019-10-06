@@ -1,8 +1,6 @@
 import { NodeModel } from '@projectstorm/react-diagrams';
 import { SimPortModel } from '../Ports/SimPortModel';
-/**
- * Example of a custom model using pure javascript
- */
+
 export class SimulationNodeModel extends NodeModel {
 	constructor(options = {}, createNewIds = false) {
 		super({

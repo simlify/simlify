@@ -4,7 +4,14 @@ import DragHandle from './DragHandle';
 
 import './Bezier.scss';
 
-function renderDragHandle(position, width, height, setHandlerDown, handlerId = 1) {
+function renderDragHandle(
+  position,
+  width,
+  height,
+  setHandlerDown,
+  handlerId = 1,
+  invert = false,
+) {
   return(
     <DragHandle 
       width={width}
@@ -13,7 +20,7 @@ function renderDragHandle(position, width, height, setHandlerDown, handlerId = 1
       onMouseUp={() => setHandlerDown(null)}
       onMouseDown={() => setHandlerDown(handlerId)}
       right={handlerId === 2}
-      bottom={handlerId === 1}
+      bottom={invert ? handlerId !== 1 : handlerId === 1}
     />
   );
 }
@@ -25,6 +32,7 @@ function Bezier(props) {
     className = '',
     styles = {},
     defaultPosition = [0.2, 0.2, 0.8, 0.8],
+    invert,
     onChange,
   } = props;
 
@@ -55,31 +63,19 @@ function Bezier(props) {
     if(positionChanged && onChange) onChange(handler1Position.concat(handler2Position));
   }
 
-  function onMouseUp(event) {
-    
-  }
-
-  function onMouseLeave(event) {
-    
-  }
-
-  function createCurvePointArray() {
-    const relativePoints = [0, 0]
-      .concat(handler1Position[0], handler1Position[1])
-      .concat(handler2Position[0], handler2Position[1])
-      .concat([1, 1]);
-    return relativePoints.map((point, index) => index % 2 ? (1 - point) * width : point * height)
+  function createCurvePointArray(decreasingCurve = false) {
+    // Keep in mind that the point (0, 0) is in the left upper corner
+    // Thats why the e.g. (0, 1) is the left lower corner
+    let relativePoints = [0, decreasingCurve ? 0 : 1]
+      .concat(handler1Position[0], 1 - handler1Position[1])
+      .concat(handler2Position[0], 1 - handler2Position[1])
+      .concat([1, decreasingCurve ? 1 : 0]);
+    return relativePoints.map((point, index) => index % 2 ? point * width : point * height)
   }
 
   const setHandlerDown = (handlerNumber) => {
     setSelectedHandler(handlerNumber);
   }
-
-  const mouseEvents = {
-    onMouseMove,
-    onMouseUp,
-    onMouseLeave,
-  };
 
   return (
     <svg
@@ -88,15 +84,15 @@ function Bezier(props) {
       style={styles}
       width={width}
       height={height}
-      {...mouseEvents}
+      onMouseMove={onMouseMove}
     >
       <Curve
         curveColor="#aaaaaa"
         curveWidth={3}
-        positions={createCurvePointArray()}
+        positions={createCurvePointArray(invert)}
       />
-      { renderDragHandle(handler1Position, width, height, setHandlerDown, 1) }
-      { renderDragHandle(handler2Position, width, height, setHandlerDown, 2) }
+      { renderDragHandle(handler1Position, width, height, setHandlerDown, 1, invert) }
+      { renderDragHandle(handler2Position, width, height, setHandlerDown, 2, invert) }
     </svg>
   );
 };

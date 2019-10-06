@@ -1,10 +1,18 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Bezier from 'components/Bezier';
+import Switch from 'components/Switch';
 import shortid from 'shortid';
 import { SimPortLabel } from '../../Ports/SimPortWidget';
 
 function renderBezierCurve(node, options) {
-	const points = options.variables.points;
+  const { points, invertedCurve } = options.variables;
+  const [ isCurveDecreasing, setCurveDecreasing ] = useState(invertedCurve);
+
+  const handleSwitchChange = (value) => {
+    options.variables.invertedCurve = value;
+    setCurveDecreasing(value);
+  }
+  
 	return (
 		<div 
 			onMouseDown={() => node.setLocked(true)}
@@ -12,9 +20,16 @@ function renderBezierCurve(node, options) {
 			onMouseLeave={() => node.setLocked(false)}
 			className="simulationNode__body__visualisation"
 		>
+      <Switch
+        disabled={false}
+        label="Decreasing Curve"
+        defaultValue={isCurveDecreasing}
+        onChange={(value) => handleSwitchChange(value)}
+      />
 			<Bezier
 				defaultPosition={points}
-				onChange={(newPoints) => {options.variables.points = newPoints}}
+        onChange={(newPoints) => {options.variables.points = newPoints}}
+        invert={isCurveDecreasing}
 				width={150}
 				height={150}
 			/>

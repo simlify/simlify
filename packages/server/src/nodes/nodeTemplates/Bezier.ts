@@ -6,11 +6,21 @@ import { portTypeFactory, timeSeriesPortType } from '../ports/portTypes';
 import Flow from '../../flow/lib/Flow';
 import { OptionsBase, VisualisationType } from '../nodeBase/NodeBase';
 
+function invertDirection(bezierPointsLinear: {name: number, value: number}[]) {
+  return bezierPointsLinear.map(({ name, value }) => {
+    return {
+      name,
+      value: 1 - value,
+    };
+  });
+}
+
 export default class Bezier extends NodeDataBase {
   value: number;
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+
     super.addPort(new InputPort(
       this,
       portTypeFactory.createNumberPortType(),
@@ -27,7 +37,8 @@ export default class Bezier extends NodeDataBase {
 
     const options: OptionsBase = {
       variables: {
-        points: [0.2, 0.2, 0.8, 0.8]
+        points: [0.2, 0.2, 0.8, 0.8],
+        invertedCurve: false,
       },
       visualisation: VisualisationType.BezierCurve,
       description: `With this node you can create an array of points based on a bezier curve. \
@@ -76,10 +87,11 @@ export default class Bezier extends NodeDataBase {
 
   async calculateBezierCurve() {
     const { NumberOfPoints } = await this.fetchInputPorts();
+    const { points, invertedCurve } = this.getOptions().variables;
     const MIN_T_STEPS = 200;
     const xStepAmount = Math.max(NumberOfPoints * 10, MIN_T_STEPS);
-    const bezierPoints = this.bezierCurve(this.getOptions().variables.points as any, xStepAmount);
+    const bezierPoints = this.bezierCurve(points as any, xStepAmount);
     const bezierPointsLinear = this.mapBezierPointsToArray(bezierPoints, NumberOfPoints);
-    return bezierPointsLinear;
+    return invertedCurve ? invertDirection(bezierPointsLinear) : bezierPointsLinear;
   }
 }

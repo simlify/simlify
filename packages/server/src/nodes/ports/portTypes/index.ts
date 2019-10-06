@@ -5,13 +5,21 @@ export type PortType = {
   isEditable: boolean;
 };
 
-export enum PortValueType { standard, number, timeseries, trigger, JSON }
+export enum PortValueType {
+  default = 'default',
+  number = 'number',
+  timeseries = 'timeseries',
+  trigger = 'trigger',
+  JSON = 'JSON',
+  boolean = 'boolean',
+}
 
 export const portTypeFactory = {
   createNumberPortType: () => Object.assign({}, numberPortType),
   createTriggerPortType: () => Object.assign({}, triggerPortType),
   createTimeSeriesPortType: () => Object.assign({}, timeSeriesPortType),
   createJSONPortType: () => Object.assign({}, jsonPortType),
+  createBooleanPortType: () => Object.assign({}, booleanPortType),
 };
 
 export const numberPortType: PortType = {
@@ -40,4 +48,11 @@ export const jsonPortType: PortType = {
   type: PortValueType.JSON,
   color: '#ababab',
   isEditable: false,
+};
+
+export const booleanPortType: PortType = {
+  value: false,
+  type: PortValueType.boolean,
+  color: '#d6647b',
+  isEditable: true,
 };

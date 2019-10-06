@@ -34,7 +34,7 @@ class NodeArea extends React.Component {
     this.engine.getNodeFactories().registerFactory(new SimulationNodeFactory());
     this.engine.getPortFactories().registerFactory(new SimPortFactory());
     this.engine.setMaxNumberPointsPerLink(0);
-    
+
     this.model = new DiagramModel();
   }
 
@@ -105,7 +105,6 @@ class NodeArea extends React.Component {
   }
 
   render() {
-    const { availableNodes } = this.props;
     return (
       <div
         className="nodeArea"
