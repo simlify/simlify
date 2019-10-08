@@ -7,7 +7,7 @@ import Flow from '../../flow/lib/Flow';
 import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
 
 const initialJSON = `{
-  "measurement": value1,
+  "measurement": input1,
   "aString": "The answer",
   "aNumber": 43,
   "aBoolean": true,

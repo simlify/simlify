@@ -15,6 +15,12 @@ function invertDirection(bezierPointsLinear: {name: number, value: number}[]) {
   });
 }
 
+function invertPoints(points: number[]) {
+  points[1] = 1 - points[1];
+  points[3] = 1 - points[3];
+  return points;
+}
+
 export default class Bezier extends NodeDataBase {
   value: number;
 
@@ -88,9 +94,10 @@ export default class Bezier extends NodeDataBase {
   async calculateBezierCurve() {
     const { NumberOfPoints } = await this.fetchInputPorts();
     const { points, invertedCurve } = this.getOptions().variables;
+    const bezierHandlePoints = invertedCurve ? invertPoints(points) : points;
     const MIN_T_STEPS = 200;
     const xStepAmount = Math.max(NumberOfPoints * 10, MIN_T_STEPS);
-    const bezierPoints = this.bezierCurve(points as any, xStepAmount);
+    const bezierPoints = this.bezierCurve(bezierHandlePoints as any, xStepAmount);
     const bezierPointsLinear = this.mapBezierPointsToArray(bezierPoints, NumberOfPoints);
     return invertedCurve ? invertDirection(bezierPointsLinear) : bezierPointsLinear;
   }
