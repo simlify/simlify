@@ -88,7 +88,7 @@ export default class MQTT extends NodeTriggerBase {
         },
       ],
       variables: {},
-      description: `The MQTT node is an output node allowing to send JSON data to a MQTT broker. \
+      description: `The MQTT node is an output node allowing you to send JSON data to a MQTT broker. \
       Use the setting page to specify the credentials for the connection.`,
     };
 

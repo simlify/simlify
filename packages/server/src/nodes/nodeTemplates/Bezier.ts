@@ -49,8 +49,7 @@ export default class Bezier extends NodeDataBase {
       },
       visualisation: VisualisationType.BezierCurve,
       description: `With this node you can create an array of points based on a bezier curve. \
-      In case you want a decreasing bezier curve set the scale to a negative value. \
-      Choose the number of points high enought that the sampling afterwards will create a smooth output curve.`,
+      Choose the number of points high enough that the sampling afterwards will create a smooth output curve.`,
     };
 
     this.setOptions(options);

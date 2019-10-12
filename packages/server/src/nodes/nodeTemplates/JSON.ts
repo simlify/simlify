@@ -48,7 +48,9 @@ export default class JSON extends NodeTriggerBase {
         }
       ],
       variables: {},
-      description: 'This node generates a JSON output that can be processed from e.g. a MQTT output node.',
+      description: `This node generates a JSON output that can be processed from e.g. a MQTT output node. \
+        Adapt the JSON under settings according to your needs. To access the input values in the JSON \
+        you have to use property naming of the input port (e.g. input1).`,
     };
     this.setOptions(options);
   }

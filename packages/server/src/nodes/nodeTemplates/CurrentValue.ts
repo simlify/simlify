@@ -17,7 +17,7 @@ export default class CurrentValue extends NodeBase {
       this,
       portTypeFactory.createNumberPortType(),
       'FlowIndex',
-      1,
+      0,
       false
     ));
 
@@ -38,9 +38,10 @@ export default class CurrentValue extends NodeBase {
 
   createOptions() {
     const options: OptionsBase = {
-      description: `This node will access the current value of this node \
-      and send it to the next node. The trigger output is exectued every time \
-      the value changes.`,
+      description: `This node will access the value of a flow \
+      and sends it to the connected node. The trigger output is exectued every time \
+      the value changes. \n
+      You have to choose the index of the flow (first tab = index 0) to get the correct value`,
     };
 
     return options;
