@@ -5,10 +5,11 @@ import convertForApi from 'helper/convertForApi';
 import { alertActions } from './index';
 
 export const flowActions = {
-  loadFlow,
-  updateFlow,
   createNewFlow,
   changeCurrentFlowIndex,
+  deleteFlow,
+  loadFlow,
+  updateFlow,
 };
 
 function loadFlow() {
@@ -88,5 +89,24 @@ function changeCurrentFlowIndex(index) {
     } else {
       return dispatch({ type: flowConstants.CHANGE_FLOW_INDEX, index });
     }
+  }
+}
+
+function deleteFlow(flowId) {
+  return dispatch => {
+    const storeData = store.getState();
+    const { flows, currentFlowIndex } = storeData.flowData;
+    const currentFlow = flows[currentFlowIndex];
+    const flowId = currentFlow.id;
+
+    api.deleteFlow(flowId)
+      .then(flows => {
+        dispatch(alertActions.success('Successfully deleted'));
+        dispatch({ type: flowConstants.UPDATE, flows });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(alertActions.error('Could not delete Flow'));
+      });
   }
 }

@@ -6,7 +6,7 @@ import { portTypeFactory } from '../ports/portTypes';
 import Flow from '../../flow/lib/Flow';
 
 import mqtt from 'mqtt';
-import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
+import { OptionsBase, SettingType, NodeCategory } from '../nodeBase/NodeBase';
 
 export default class MQTT extends NodeTriggerBase {
   value: number;
@@ -15,6 +15,7 @@ export default class MQTT extends NodeTriggerBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Output;
 
     this.addPort(new InputPort(
         this,

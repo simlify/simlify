@@ -14,6 +14,13 @@ export enum SettingType {
 }
 
 export enum VisualisationType { BezierCurve = 'BezierCurve', LineChart= 'LineChart' }
+export enum NodeCategory {
+  Input = 'Input',
+  Output = 'Output',
+  Conversion = 'Conversion',
+  Curve = 'Curve',
+  Misc = 'Misc',
+}
 
 export interface Setting {
   name: string;
@@ -38,6 +45,7 @@ export class NodeBase {
   positionX: number;
   positionY: number;
   options: OptionsBase;
+  nodeCategory: NodeCategory;
 
   constructor(parentFlow: Flow, nodeId: string, options?: OptionsBase) {
     this.id = nodeId || generateId();
@@ -50,6 +58,8 @@ export class NodeBase {
     // Graphical representation
     this.positionX = 0;
     this.positionY = 0;
+
+    this.nodeCategory = NodeCategory.Misc;
 
     this.initialize();
   }
@@ -144,12 +154,15 @@ export class NodeBase {
       outputPorts: this.outputPorts.map(outputPort => outputPort.serialize()),
       positionX: this.positionX,
       positionY: this.positionY,
+      nodeCategory: this.nodeCategory,
     });
   }
 
   deserialize(serializedData: any) {
     this.id = serializedData.id;
     this.options = serializedData.options;
+    this.nodeCategory = serializedData.nodeCategory;
+
     serializedData.inputPorts.forEach((serializedPort: any, index: number) => {
       const inputPort = this.inputPorts[index];
       inputPort.overrideId(serializedPort.id);

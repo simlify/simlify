@@ -1,12 +1,13 @@
 'use strict';
 
 import { NodeTriggerBase } from '../nodeBase/';
-import { OptionsBase } from '../nodeBase/NodeBase';
+import { OptionsBase, NodeCategory } from '../nodeBase/NodeBase';
 import Flow from '../../flow/lib/Flow';
 
 export default class StartNode extends NodeTriggerBase {
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Misc;
 
     const options: OptionsBase = this.createOptions();
     this.setOptions(options);

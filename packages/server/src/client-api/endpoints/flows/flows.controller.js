@@ -25,8 +25,16 @@ const addFlow = (commonData) => (req, res) => {
     res.send(addedFlow.serialize());
 }
 
+const deleteFlow = (commonData) => (req, res) => {
+    const flowId = req.params.flowId;
+    const flows = commonData.flows.deleteFlow(flowId);
+    const allFlowsSerialized = flows.map((flow) => flow.serialize());
+    res.send(allFlowsSerialized);
+}
+
 module.exports = {
+    addFlow,
+    deleteFlow,
     getAllFlows,
     updateFlow,
-    addFlow,
 }

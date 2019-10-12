@@ -1,0 +1,5 @@
+{
+    "name": "DeleteDialog",
+    "private": true,
+    "main": "./DeleteDialog.js"
+}

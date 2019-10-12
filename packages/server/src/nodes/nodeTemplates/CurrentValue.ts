@@ -4,13 +4,14 @@ import { NodeBase } from '../nodeBase';
 import Flow from '../../flow/lib/Flow';
 import { InputPort, OutputPort } from '../ports';
 import { PortValueType, portTypeFactory } from '../ports/portTypes';
-import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
+import { OptionsBase, NodeCategory } from '../nodeBase/NodeBase';
 
 const MODULENAME = 'CurrentValue';
 
 export default class CurrentValue extends NodeBase {
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Output;
 
     super.addPort(new InputPort(
       this,

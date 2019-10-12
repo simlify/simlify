@@ -2,9 +2,9 @@
 
 import { NodeDataBase } from '../nodeBase';
 import { OutputPort, InputPort } from '../ports';
-import { portTypeFactory, timeSeriesPortType } from '../ports/portTypes';
+import { portTypeFactory } from '../ports/portTypes';
 import Flow from '../../flow/lib/Flow';
-import { OptionsBase, VisualisationType } from '../nodeBase/NodeBase';
+import { OptionsBase, VisualisationType, NodeCategory } from '../nodeBase/NodeBase';
 
 function invertDirection(bezierPointsLinear: {name: number, value: number}[]) {
   return bezierPointsLinear.map(({ name, value }) => {
@@ -26,6 +26,7 @@ export default class Bezier extends NodeDataBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Curve;
 
     super.addPort(new InputPort(
       this,
@@ -51,6 +52,7 @@ export default class Bezier extends NodeDataBase {
       In case you want a decreasing bezier curve set the scale to a negative value. \
       Choose the number of points high enought that the sampling afterwards will create a smooth output curve.`,
     };
+
     this.setOptions(options);
   }
 

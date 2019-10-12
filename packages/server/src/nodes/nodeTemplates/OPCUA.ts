@@ -7,7 +7,7 @@ import Flow from '../../flow/lib/Flow';
 import { opcuaManager } from '../../utilities';
 
 import { DataType, Variant } from 'node-opcua';
-import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
+import { OptionsBase, SettingType, NodeCategory } from '../nodeBase/NodeBase';
 
 export default class OPCUA extends NodeTriggerBase {
   value: number;

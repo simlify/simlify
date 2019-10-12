@@ -3,7 +3,7 @@
 import { NodeDataBase } from '../nodeBase';
 import { OutputPort, InputPort } from '../ports';
 import { portTypeFactory } from '../ports/portTypes';
-import { OptionsBase } from '../nodeBase/NodeBase';
+import { OptionsBase, NodeCategory } from '../nodeBase/NodeBase';
 import Flow from '../../flow/lib/Flow';
 
 export default class Number extends NodeDataBase {
@@ -11,6 +11,8 @@ export default class Number extends NodeDataBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Input;
+
     super.addPort(new InputPort(
       this,
       portTypeFactory.createNumberPortType(),

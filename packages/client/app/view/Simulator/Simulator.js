@@ -8,6 +8,7 @@ import TabBar from 'components/TabBar';
 
 import ButtonBar from './ButtonBar';
 import ImportDialog from './ImportDialog';
+import DeleteDialog from './DeleteDialog';
 import validateFlowJSON from 'helper/validateFlowJSON';
 
 import './Simulator.scss';
@@ -18,6 +19,7 @@ class Simulator extends React.Component {
 
     this.state = {
       isImportDialogOpen: false,
+      isDeleteDialogOpen: false,
     };
 
     this.nodeAreaRef = React.createRef();
@@ -37,8 +39,16 @@ class Simulator extends React.Component {
     this.props.dispatch(nodeActions.setSelectedNodeModel(selectedNodeModel));
   }
 
+  deleteFlow() {
+    this.props.dispatch(flowActions.deleteFlow());
+  }
+
   setImportDialogActive(isOpen) {
     this.setState({ isImportDialogOpen: isOpen });
+  }
+
+  setDeleteDialogActive(isOpen) {
+    this.setState({ isDeleteDialogOpen: isOpen });
   }
 
   importFlowData(jsonFlowString) {
@@ -60,7 +70,7 @@ class Simulator extends React.Component {
   }
 
   render() {
-    const { isImportDialogOpen } = this.state;
+    const { isImportDialogOpen, isDeleteDialogOpen } = this.state;
     const { flows, currentFlowIndex } = this.props.flowData;
     const { availableNodes, selectedNodeModel } = this.props.nodeData;
 
@@ -76,6 +86,11 @@ class Simulator extends React.Component {
           onClose={() => this.setImportDialogActive(false)}
           onImport={(jsonData) => this.importFlowData(jsonData)}
         />
+        <DeleteDialog
+          open={isDeleteDialogOpen}
+          onClose={() => this.setDeleteDialogActive(false)}
+          onDelete={() => this.deleteFlow()}
+        />
         <SideComponents
           availableNodes={availableNodes}
         />
@@ -83,6 +98,7 @@ class Simulator extends React.Component {
           <ButtonBar 
             nodeAreaRef={this.nodeAreaRef}
             onImportClick={() => this.setImportDialogActive(true)}
+            onDeleteClick={() => this.setDeleteDialogActive(true)}
           />
           <TabBar
             tabs={tabs}

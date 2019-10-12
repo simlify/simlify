@@ -2,7 +2,7 @@ import Flow from './lib/Flow';
 import { CommonData } from '../core';
 
 let commonData : CommonData;
-const flows: Flow[] = [];
+let flows: Flow[] = [];
 
 const createNewFlow = () => {
   const flow = new Flow(commonData);
@@ -12,6 +12,11 @@ const createNewFlow = () => {
 
 const getFlowById = (flowId : string) => {
   return flows.filter(flow => flow.id === flowId)[0];
+};
+
+const deleteFlow = (flowId: string) => {
+  flows = flows.filter(flow => flow.id !== flowId);
+  return flows;
 };
 
 const getFlowByIndex = (index : number) => {
@@ -28,6 +33,7 @@ const init = (_commonData : CommonData) => {
 export default {
   init,
   createNewFlow,
+  deleteFlow,
   getAllFlows,
   getFlowById,
   getFlowByIndex,

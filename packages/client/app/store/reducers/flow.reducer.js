@@ -18,7 +18,7 @@ const initialState = {
 export function flowData(state = initialState, action) {
   switch (action.type) {
     case flowConstants.UPDATE:
-      return { ...state, flows: action.flows }
+      return { ...state, flows: action.flows };
     case flowConstants.CHANGE_FLOW_INDEX:
       return { ...state, currentFlowIndex: action.index };
     default:

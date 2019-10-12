@@ -59,6 +59,30 @@ module.exports = (server, commonData) => {
     *         description: The Flow was successfully updated
     */
     server.post('/api/v1/flows',
-      controller.addFlow(commonData));
+        controller.addFlow(commonData));
     server.options('/api/v1/flows');
+
+    /**
+    * @swagger
+    * /api/v1/flows/{flowId}:
+    *   delete:
+    *     tags:
+    *       - flows
+    *     description: Deletes a Flow
+    *     produces:
+    *       - application/json
+    *     parameters:
+	*       - name: flowId
+	*         description: Id of the flow that will be deleted
+    *         in: path
+    *         schema:
+    *           type: string
+	*         require: true
+    *     responses:
+    *       200:
+    *         description: The Flow was successfully deleted
+    */
+    server.delete('/api/v1/flows/:flowId',
+        controller.deleteFlow(commonData));
+    server.options('/api/v1/flows/:flowId');
 }

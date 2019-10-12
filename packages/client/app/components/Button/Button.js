@@ -7,7 +7,7 @@ const styles = {
 
 const Button = (props) => {
   return (
-    <ButtonUi onClick={props.onClick} variant="contained" className="MuiButton-sizeSmall" >
+    <ButtonUi variant="contained" className="MuiButton-sizeSmall" {...props} >
       { props.children ? props.children : 'Button' }
     </ButtonUi>
   );

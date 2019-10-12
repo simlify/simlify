@@ -4,7 +4,7 @@ import { NodeTriggerBase } from '../nodeBase';
 import { OutputPort, InputPort } from '../ports';
 import { portTypeFactory } from '../ports/portTypes';
 import Flow from '../../flow/lib/Flow';
-import { OptionsBase, SettingType } from '../nodeBase/NodeBase';
+import { OptionsBase, SettingType, NodeCategory } from '../nodeBase/NodeBase';
 
 const initialJSON = `{
   "measurement": input1,
@@ -17,6 +17,7 @@ export default class JSON extends NodeTriggerBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Conversion;
 
     super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input1', 0));
     super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input2', 0));

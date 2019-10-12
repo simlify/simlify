@@ -3,7 +3,7 @@
 import { NodeTriggerBase } from '../nodeBase/';
 import { InputPort, OutputPort } from '../ports';
 import { portTypeFactory } from '../ports/portTypes';
-import { OptionsBase } from '../nodeBase/NodeBase';
+import { OptionsBase, NodeCategory } from '../nodeBase/NodeBase';
 import { logger } from '../../utilities';
 import Flow from '../../flow/lib/Flow';
 
@@ -12,6 +12,7 @@ export default class TriggerCurve extends NodeTriggerBase {
 
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
+    this.nodeCategory = NodeCategory.Misc;
 
     this.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'offset', 0));
     this.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'scale', 1));
