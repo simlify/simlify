@@ -46,7 +46,7 @@ export const init = async (_server : Express.Application) => {
   startNode.connectOutputTriggerPort(triggerCurveNode.getTriggerInputPort());
   triggerCurveNode.connectOutputTriggerPort(startNode.getTriggerInputPort());
 
-  const sourcePort = numberNode.getOutputPortsByLabel('number')[0];
+  const sourcePort = numberNode.getOutputPortsByLabel('random number')[0];
   const targetPort = triggerCurveNode.getInputPortsByLabel('offset')[0];
   sourcePort.connectTo(targetPort);
 
