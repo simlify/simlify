@@ -4,6 +4,7 @@ import { CanvasWidget } from '@projectstorm/react-canvas-core';
 import { SimulationNodeModel } from './SimulationNodes/SimulationNodeModel.js';
 import { SimulationNodeFactory } from './SimulationNodes/SimulationNodeFactory.js';
 import { SimPortFactory } from './Ports/SimPortFactory';
+import Logo from 'assets/images/logo.svg';
 
 import './NodeArea.scss';
 
@@ -117,6 +118,7 @@ class NodeArea extends React.Component {
           className="nodeArea__canvas"
           engine={this.engine}
         />
+        <Logo />
       </div>
     );
   }

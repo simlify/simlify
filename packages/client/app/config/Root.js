@@ -7,7 +7,6 @@ import { SnackbarProvider } from 'notistack';
 import { store } from '../store';
 
 // Components
-import Header from 'components/Header';
 import Notifier from 'components/Notifier';
 
 // Views for routing
@@ -29,7 +28,6 @@ const Root = () => {
         <Notifier />
         <Router>
           <div style={{display: 'flex', flexFlow: 'column', height: '100vh'}}>
-            <Header id="header" />
             <MainLayout>
               <Switch>
                 <Route exact path="/app/simulator" component={Simulator} />
