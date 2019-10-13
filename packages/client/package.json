@@ -42,6 +42,7 @@
     "react-dom": "^16.9.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
+    "react-scrollbars-custom": "^4.0.20",
     "react-simple-code-editor": "^0.10.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",

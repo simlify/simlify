@@ -3,6 +3,9 @@
 .tabBar {
     display: flex;
     margin-top: 5px;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
 
     .tab {
         padding: 5px;

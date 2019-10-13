@@ -118,7 +118,7 @@ class NodeArea extends React.Component {
           className="nodeArea__canvas"
           engine={this.engine}
         />
-        <Logo />
+        <Logo className="nodeArea__logo" />
       </div>
     );
   }

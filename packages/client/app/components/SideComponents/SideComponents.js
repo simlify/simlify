@@ -1,4 +1,5 @@
 import React from 'react';
+import Scrollbar from "react-scrollbars-custom";
 import DragElement from './DragElement';
 
 import './SideComponents.scss';
@@ -20,7 +21,7 @@ const convertToCategories = (availableNodes) => {
 const renderCategories = (dragElements) => {
   return Object.entries(dragElements).map(([category, dragElements]) => {
     return(
-      <div>
+      <div className="sideComponents__category">
         {category}
         {dragElements}
       </div>
@@ -35,10 +36,7 @@ const SideComponents = (props) => {
   return (
     <div className="sideComponents">
       <div className="sideComponents__container">
-        <div className="sideComponents__container__header">
-          Available Nodes
-        </div>
-        { renderCategories(dragElements) }
+        <Scrollbar style={{ position: "" }}>{ renderCategories(dragElements) }</Scrollbar>
       </div>
     </div>
   );

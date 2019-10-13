@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import TextField from 'components/TextField';
-import Button from 'components/Button';
 import Tabbar from 'components/TabBar';
 import RenderWidget from './RenderWidget';
 import SideHelperSettings from './SideHelperSettings';
