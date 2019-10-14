@@ -22,6 +22,7 @@
 
         &--active {
             background-color: $nodeArea-background;
+            z-index: 1;
         }
     }
 }
