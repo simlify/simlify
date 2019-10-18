@@ -3,6 +3,9 @@ import ButtonUi from '@material-ui/core/Button';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
+  root: {
+    borderRadius: 0,
+  }
 };
 
 const Button = (props) => {

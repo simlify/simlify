@@ -1,7 +1,7 @@
 @import "assets/scss/variables.scss";
 
 .simulationNode{
-	border: solid 2px gray;
+	border: solid 3px $node-border;
 	border-radius: 3px;
 	width: 200px;
 	display: flex;

@@ -36,7 +36,7 @@ const SideHelper = (props) => {
         tabs={[{ name: 'Description', icon: 'none' }, { name: 'Settings', icon: 'none' }]}
         onTabChange={(selectedTab) => changeTab(selectedTab)}
       />
-      <div className="sideHelper__body" key={`${nodeModelOptions.id}`}>
+      <div className="sideHelper__body boxShadow" key={`${nodeModelOptions.id}`}>
         {
           selectedTab === 0 && options && options.description &&
           renderDescription(options.description, nodeModel)

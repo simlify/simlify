@@ -5,7 +5,7 @@ import './DragElement.scss';
 const DragElement = (props) => {
   return (
     <div
-      className="dragElement"
+      className="dragElement boxShadow"
       draggable={true}
       onDragStart={event => {
         event.dataTransfer.setData('diagram-node', JSON.stringify(props.nodeData));

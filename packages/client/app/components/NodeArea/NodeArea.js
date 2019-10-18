@@ -108,7 +108,7 @@ class NodeArea extends React.Component {
   render() {
     return (
       <div
-        className="nodeArea"
+        className="nodeArea boxShadow"
         onDrop={(event) => this.onDrop(event)}
         onDragOver={event => {
           event.preventDefault();

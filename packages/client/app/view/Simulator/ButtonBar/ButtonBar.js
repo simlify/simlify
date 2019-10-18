@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
+import Button from 'components/Button';
 import Menu from '../Menu';
 import { flowActions } from 'store/actions';
 
