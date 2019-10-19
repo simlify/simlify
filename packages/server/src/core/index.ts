@@ -8,12 +8,14 @@ import * as NodeRegistry from '../nodes/nodeRegistry';
 const MODULENAME = 'CORE';
 
 let server : Express.Application = null;
+let io: SocketIO.Server = null;
 
 export interface CommonData {
   settings: object;
   nodeRegistry: any;
   server: any;
   flows: any;
+  socketio: SocketIO.Server;
 }
 
 export const commonData : CommonData = {
@@ -21,6 +23,7 @@ export const commonData : CommonData = {
   get nodeRegistry() { return NodeRegistry; },
   get server() { return server; },
   get flows() { return flow; },
+  get socketio() { return io; },
 };
 
 const addInitialNodes = (currentFlow: Flow) => {
@@ -41,8 +44,9 @@ const addInitialNodes = (currentFlow: Flow) => {
   sourcePort.connectTo(targetPort);
 };
 
-export const init = async (_server : Express.Application) => {
+export const init = async (_server : Express.Application, _io: SocketIO.Server) => {
   server = _server;
+  io = _io;
 
   try {
     const pathToNodes = path.join(__dirname, '../nodes/nodeTemplates');

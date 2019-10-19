@@ -23,6 +23,7 @@
     "url": "https://github.com/simlify/simlify.git"
   },
   "dependencies": {
+    "@types/socket.io": "^2.1.4",
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.2",
     "cors": "^2.8.5",
@@ -30,6 +31,7 @@
     "morgan": "^1.9.1",
     "mqtt": "^3.0.0",
     "node-opcua": "^2.1.7",
+    "socket.io": "^2.3.0",
     "swagger-jsdoc": "^3.4.0",
     "swagger-ui-express": "^4.0.7"
   },

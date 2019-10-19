@@ -73,6 +73,13 @@ export default class Flow {
     this.currentValue = calculationValue;
     this.percentageDone = percentageDone;
     Object.values(this.onValueUpdateCallbacks).forEach(callback => callback(calculationValue));
+
+    const updateInfo = {
+      percentageDone,
+      nodeId: node.id,
+      timestamp: new Date().getTime(),
+    };
+    if (this.commonData.socketio) this.commonData.socketio.emit(this.id, updateInfo);
   }
 
   createNewIds() {
