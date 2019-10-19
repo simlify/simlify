@@ -1,0 +1,5 @@
+{
+    "name": "LineGraph",
+    "private": true,
+    "main": "./LineGraph.js"
+}
