@@ -2,6 +2,7 @@ import path from 'path';
 import clientApi from '../client-api';
 import { logger } from '../utilities';
 import flow from '../flow';
+import Flow from '../flow/lib/Flow';
 import * as NodeRegistry from '../nodes/nodeRegistry';
 
 const MODULENAME = 'CORE';
@@ -22,18 +23,7 @@ export const commonData : CommonData = {
   get flows() { return flow; },
 };
 
-export const init = async (_server : Express.Application) => {
-  server = _server;
-
-  try {
-    const pathToNodes = path.join(__dirname, '../nodes/nodeTemplates');
-    await NodeRegistry.registerNodesFromFolder(pathToNodes);
-  } catch (err) {
-    logger.error(MODULENAME, err);
-  }
-  flow.init(commonData);
-  const currentFlow = flow.getFlowByIndex(0);
-
+const addInitialNodes = (currentFlow: Flow) => {
   const startNode = currentFlow.addNode('StartNode') as any;
   startNode.setPosition(480, 180);
 
@@ -49,7 +39,20 @@ export const init = async (_server : Express.Application) => {
   const sourcePort = numberNode.getOutputPortsByLabel('random number')[0];
   const targetPort = triggerCurveNode.getInputPortsByLabel('offset')[0];
   sourcePort.connectTo(targetPort);
+};
 
+export const init = async (_server : Express.Application) => {
+  server = _server;
+
+  try {
+    const pathToNodes = path.join(__dirname, '../nodes/nodeTemplates');
+    await NodeRegistry.registerNodesFromFolder(pathToNodes);
+  } catch (err) {
+    logger.error(MODULENAME, err);
+  }
+  flow.init(commonData);
+  const currentFlow = flow.getFlowByIndex(0);
+  addInitialNodes(currentFlow);
   currentFlow.start();
 
   return await clientApi.init(server, commonData);
