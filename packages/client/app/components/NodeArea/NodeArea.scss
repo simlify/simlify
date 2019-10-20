@@ -1,7 +1,7 @@
 @import "assets/scss/variables.scss";
 
 .nodeArea {
-
+  position: relative;
   height: 100%;
   flex-grow: 1;
   flex-shrink: 1;
@@ -11,18 +11,14 @@
   &__canvas {
     width: 100%;
     height: 100%;
-    background-color: $nodeArea-background;
-    background-image: linear-gradient(0deg, transparent 9%, rgba(255, 255, 255, .2) 10%, rgba(255, 255, 255, .2) 12%, transparent 13%, transparent 29%, rgba(255, 255, 255, .1) 30%, rgba(255, 255, 255, .1) 31%, transparent 32%, transparent 49%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 51%, transparent 52%, transparent 69%, rgba(255, 255, 255, .1) 70%, rgba(255, 255, 255, .1) 71%, transparent 72%, transparent 89%, rgba(255, 255, 255, .1) 90%, rgba(255, 255, 255, .1) 91%, transparent 92%, transparent), linear-gradient(90deg, transparent 9%, rgba(255, 255, 255, .2) 10%, rgba(255, 255, 255, .2) 12%, transparent 13%, transparent 29%, rgba(255, 255, 255, .1) 30%, rgba(255, 255, 255, .1) 31%, transparent 32%, transparent 49%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 51%, transparent 52%, transparent 69%, rgba(255, 255, 255, .1) 70%, rgba(255, 255, 255, .1) 71%, transparent 72%, transparent 89%, rgba(255, 255, 255, .1) 90%, rgba(255, 255, 255, .1) 91%, transparent 92%, transparent);
-    height: 100%;
-    background-size: 50px 50px;
   }
 
   &__logo {
     position: absolute;
-    left: 20px;
+    left: 15px;
     width: 70px;
     height: 20px;
-    bottom: 20px;
+    bottom: 10px;
     opacity: 0.6;
   }
 

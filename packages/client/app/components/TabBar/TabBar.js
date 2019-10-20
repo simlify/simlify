@@ -10,7 +10,7 @@ const Tab = (props) => {
 }
 
 const TabBar = (props) => {
-  const { tabs = [{ name: 'tab1', icon: 'asdf'}, { name: 'tab2', icon: 'asdf'}] } = props;
+  const { tabs = [{ name: 'tab1', icon: 'none'}, { name: 'tab2', icon: 'none'}] } = props;
   const [activeTab, setActiveTab] = useState(0);
 
   function onTabChange(index) {

@@ -115,7 +115,7 @@ class NodeArea extends React.Component {
         }}
       >
         <CanvasWidget
-          className="nodeArea__canvas"
+          className="nodeArea__canvas blueprintBackground"
           engine={this.engine}
         />
         <Logo className="nodeArea__logo" />

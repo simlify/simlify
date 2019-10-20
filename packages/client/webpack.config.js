@@ -25,7 +25,11 @@ const config = {
     port: 8081,
     historyApiFallback: true,
     proxy: { 
-      '/api/*': 'http://localhost:3000/'
+      '/api/*': 'http://localhost:3000/',
+      '/socketio/*': {
+        target: 'ws://localhost:3000/socketio/',
+        ws: true,
+      },
     }
   },
 

@@ -5,6 +5,7 @@ import NodeArea from 'components/NodeArea';
 import SideComponents from 'components/SideComponents';
 import SideHelper from 'components/SideHelper';
 import TabBar from 'components/TabBar';
+import LineGraph from 'components/LineGraph';
 
 import ButtonBar from './ButtonBar';
 import ImportDialog from './ImportDialog';
@@ -71,7 +72,7 @@ class Simulator extends React.Component {
 
   render() {
     const { isImportDialogOpen, isDeleteDialogOpen } = this.state;
-    const { flows, currentFlowIndex } = this.props.flowData;
+    const { flows, currentFlowIndex, currentFlowState } = this.props.flowData;
     const { availableNodes, selectedNodeModel } = this.props.nodeData;
 
     const currentFlow = flows[currentFlowIndex];
@@ -110,6 +111,7 @@ class Simulator extends React.Component {
             options={currentFlow}
             onEvent={(event) => this.onNodeAreaEvent(event)}
           />
+          <LineGraph data={currentFlowState.data}/>
         </div>
         <SideHelper
           nodeModel={selectedNodeModel}

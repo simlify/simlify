@@ -39,3 +39,15 @@ h3 {
   -moz-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
+
+.blueprintBackground {
+  background-color: $nodeArea-background;
+  background-image: linear-gradient(0deg, transparent 9%, rgba(255, 255, 255, .1) 10%, rgba(255, 255, 255, .1) 12%, transparent 13%, transparent 29%, rgba(255, 255, 255, .05) 30%, rgba(255, 255, 255, .05) 31%, transparent 32%, transparent 49%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 51%, transparent 52%, transparent 69%, rgba(255, 255, 255, .05) 70%, rgba(255, 255, 255, .05) 71%, transparent 72%, transparent 89%, rgba(255, 255, 255, .05) 90%, rgba(255, 255, 255, .05) 91%, transparent 92%, transparent), linear-gradient(90deg, transparent 9%, rgba(255, 255, 255, .1) 10%, rgba(255, 255, 255, .1) 12%, transparent 13%, transparent 29%, rgba(255, 255, 255, .05) 30%, rgba(255, 255, 255, .05) 31%, transparent 32%, transparent 49%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 51%, transparent 52%, transparent 69%, rgba(255, 255, 255, .05) 70%, rgba(255, 255, 255, .05) 71%, transparent 72%, transparent 89%, rgba(255, 255, 255, .05) 90%, rgba(255, 255, 255, .05) 91%, transparent 92%, transparent);
+  background-size: 50px 50px;
+}
+
+.blueprintBackground2 {
+  background-color: $nodeArea-background;
+  background-image: linear-gradient(0deg, transparent 9%, rgba(255, 255, 255, .2) 10%, rgba(255, 255, 255, .2) 12%, transparent 13%, transparent 29%, rgba(255, 255, 255, .1) 30%, rgba(255, 255, 255, .1) 31%, transparent 32%, transparent 49%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 51%, transparent 52%, transparent 69%, rgba(255, 255, 255, .1) 70%, rgba(255, 255, 255, .1) 71%, transparent 72%, transparent 89%, rgba(255, 255, 255, .1) 90%, rgba(255, 255, 255, .1) 91%, transparent 92%, transparent), linear-gradient(90deg, transparent 9%, rgba(255, 255, 255, .2) 10%, rgba(255, 255, 255, .2) 12%, transparent 13%, transparent 29%, rgba(255, 255, 255, .1) 30%, rgba(255, 255, 255, .1) 31%, transparent 32%, transparent 49%, rgba(255, 255, 255, .1) 50%, rgba(255, 255, 255, .1) 51%, transparent 52%, transparent 69%, rgba(255, 255, 255, .1) 70%, rgba(255, 255, 255, .1) 71%, transparent 72%, transparent 89%, rgba(255, 255, 255, .1) 90%, rgba(255, 255, 255, .1) 91%, transparent 92%, transparent);
+  background-size: 50px 50px;
+}

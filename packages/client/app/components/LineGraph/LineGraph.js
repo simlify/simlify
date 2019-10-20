@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import { TimeSeries} from "pondjs";
+import React from 'react';
+import { styler } from 'react-timeseries-charts';
+import { TimeSeries} from 'pondjs';
 import {
   Charts,
   ChartContainer,
@@ -9,13 +10,39 @@ import {
   Resizable
 } from "react-timeseries-charts";
 
-const dataSample =  [];
+import "./LineGraph.scss";
 
 const chart = (data) => (
   <Charts>
-      <ScatterChart axis="y" series={data} />
+      <ScatterChart axis="y" series={data} style={perEventStyle}/>
   </Charts>
 );
+
+const axisStyle = { 
+  label: { 
+    stroke: "none",
+    fill: "#FFFFFF", // Default label color
+    fontWeight: 100,
+    fontSize: 12,
+    font: '"Goudy Bookletter 1911", sans-serif"'
+  },
+  values: {
+    stroke: "none",
+    fill: "#FFFFFF", // Default value color
+    fontWeight: 100,
+    fontSize: 11,
+    font: '"Goudy Bookletter 1911", sans-serif"'
+  }, 
+  ticks: {
+    fill: "none",
+    stroke: "#C0C0C0"
+  },
+  axis: {
+    fill:
+    "none",
+    stroke: "#C0C0C0"
+  }
+}
 
 const createSeries = (dataPoints) => new TimeSeries({
   name: '',
@@ -23,38 +50,60 @@ const createSeries = (dataPoints) => new TimeSeries({
   points: dataPoints,
 });
 
+const perEventStyle = (column, event) => {
+  const color = "#FFFFFF"; // heat[Math.floor((1 - event.get("station1") / 40) * 9)];
+  return {
+      normal: {
+          fill: color,
+          opacity: 1.0
+      },
+      highlighted: {
+          fill: color,
+          stroke: "none",
+          opacity: 1.0
+      },
+      selected: {
+          fill: "none",
+          stroke: "#2CB1CF",
+          strokeWidth: 3,
+          opacity: 1.0
+      },
+      muted: {
+          stroke: "none",
+          opacity: 0.4,
+          fill: color
+      }
+  };
+};
+
 export default ({
+    data,
     maxPoints = 1000,
+    className,
     ...rest
   }) => {
-    const [data, setData] = useState(dataSample);
     const series = createSeries(data);
-
-    useEffect(() => {
-      setInterval(() => {
-        data.push([new Date().getTime(), Math.random() * 100]);
-        if(data.length > maxPoints) data.pop();
-        setData([...data]);
-      }, 500);
-    }, []);
 
     if(data.length < 2) return null;
 
     return (
-      <Resizable>
-        <ChartContainer timeRange={series.range()}>
-          <ChartRow height="150">
-            <YAxis
-              id="y"
-              label="Value"
-              min={series.min()}
-              max={series.max()}
-              width="70"
-              type="linear"
-            />
-            { chart(series) }
-          </ChartRow>
-        </ChartContainer>
-      </Resizable>
+      <div className="lineGraph blueprintBackground boxShadow" >
+        <Resizable>
+          <ChartContainer timeAxisStyle={axisStyle} timeRange={series.range()}>
+            <ChartRow height="150">
+              <YAxis
+                id="y"
+                label=""
+                min={series.min()}
+                max={series.max()}
+                width="70"
+                type="linear"
+                style={axisStyle}
+              />
+              { chart(series) }
+            </ChartRow>
+          </ChartContainer>
+        </Resizable>
+      </div>
     )
   }
