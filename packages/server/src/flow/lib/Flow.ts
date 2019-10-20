@@ -76,6 +76,7 @@ export default class Flow {
 
     const updateInfo = {
       percentageDone,
+      value: calculationValue,
       nodeId: node.id,
       timestamp: new Date().getTime(),
     };
