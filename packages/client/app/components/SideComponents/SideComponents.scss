@@ -15,4 +15,22 @@
     &__category {
         margin-top: 10px;
     }
+
+    &__categoryName {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        font-weight: bold;
+    }
+
+    &__categoryName:after {
+        position: absolute;
+        top: 51%;
+        overflow: hidden;
+        width: 80%;
+        height: 1px;
+        content: '\a0';
+        background-color: black;
+        margin-left: 10px;
+    }
 }

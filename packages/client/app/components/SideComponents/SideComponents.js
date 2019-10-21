@@ -22,7 +22,7 @@ const renderCategories = (dragElements) => {
   return Object.entries(dragElements).map(([category, dragElements]) => {
     return(
       <div className="sideComponents__category">
-        {category}
+        <div className="sideComponents__categoryName">{category}</div>
         {dragElements}
       </div>
     )
