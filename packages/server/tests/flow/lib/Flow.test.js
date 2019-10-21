@@ -63,13 +63,13 @@ describe('Flow class', () => {
     const newFlow = new Flow.default(commonData);
     newFlow.deserialize(mockFlowData);
     
-    const foundPort = newFlow.getPortWithId('d10c5eb63d0e041adc1239860aacc74704845a0e');
+    const foundPort = newFlow.getPortWithId('2a6848861ed431109347187a09e5c51e16caaa7e');
     expect(foundPort).toBeDefined();
     expect(foundPort.label === 'trigger').toBeTruthy();
 
     const foundNode = newFlow.getNodeWithId('b581fa4635ad4f8dcc127dcf5bc5a35b677f5248');
     expect(foundNode).toBeDefined();
-    expect(foundNode.inputPorts.length === 1).toBeTruthy();
+    expect(foundNode.inputPorts.length === 0).toBeTruthy();
     expect(foundNode.outputPorts.length === 1).toBeTruthy();
 
     done();

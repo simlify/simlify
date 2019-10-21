@@ -75,12 +75,16 @@ export default class NodeTriggerBase extends NodeBase {
     const triggerOutputPort = this.getTriggerOutputPort();
 
     let triggerInputConnectedToNodeId: string  = null;
-    if (triggerInputPort.portConnectedTo && triggerInputPort.portConnectedTo.parentNode) {
+    if (triggerInputPort &&
+      triggerInputPort.portConnectedTo &&
+      triggerInputPort.portConnectedTo.parentNode) {
       triggerInputConnectedToNodeId = triggerInputPort.portConnectedTo.parentNode.getNodeId();
     }
 
     let triggerOutputConnectedToNodeId: string = null;
-    if (triggerOutputPort.portConnectedTo && triggerOutputPort.portConnectedTo.parentNode) {
+    if (triggerOutputPort &&
+      triggerOutputPort.portConnectedTo &&
+      triggerOutputPort.portConnectedTo.parentNode) {
       triggerOutputConnectedToNodeId = triggerOutputPort.portConnectedTo.parentNode.getNodeId();
     }
 

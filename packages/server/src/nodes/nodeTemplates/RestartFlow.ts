@@ -4,12 +4,12 @@ import { NodeTriggerBase } from '../nodeBase/';
 import { OptionsBase, NodeCategory } from '../nodeBase/NodeBase';
 import Flow from '../../flow/lib/Flow';
 
-export default class StartNode extends NodeTriggerBase {
+export default class RestartFlow extends NodeTriggerBase {
   constructor(parentFlow: Flow, nodeId: string) {
     super(parentFlow, nodeId);
     this.nodeCategory = NodeCategory.Misc;
 
-    this.removeInputPort();
+    this.removeOutputPort();
 
     const options: OptionsBase = this.createOptions();
     this.setOptions(options);
@@ -17,18 +17,18 @@ export default class StartNode extends NodeTriggerBase {
 
   createOptions() {
     const options: OptionsBase = {
-      description: `Every flow can have only one StartNode. This is the starting point for the curve generation. \
-      Connect the trigger output to an value generation node (like TriggerCurveNode). \
-      If you want to realize an infinite curve generation route back the to the trigger input of this node.`,
+      description: 'This node will restart the flow and thus create a new curve.',
     };
 
     return options;
   }
 
-  removeInputPort() {
-    this.getInputPorts().forEach(port => this.removePort(port.id));
+  removeOutputPort() {
+    this.getOutputPorts().forEach(port => this.removePort(port.id));
   }
 
   onTrigger() {
+    this.parentFlow.stop();
+    this.parentFlow.start();
   }
 }

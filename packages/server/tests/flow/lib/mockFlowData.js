@@ -9,18 +9,6 @@ module.exports = {
            "description":"Every flow can have only one StartNode. This is the starting point for the curve generation.       Connect the trigger output to an value generation node (like TriggerCurveNode).       If you want to realize an infinite curve generation route back the to the trigger input of this node."
         },
         "inputPorts":[
-           {
-              "id":"d10c5eb63d0e041adc1239860aacc74704845a0e",
-              "label":"trigger",
-              "portConnectedToPortId":"9b001e9c94697f307db4ac69e7d5b5c67da8d9c1",
-              "portType":{
-                 "value":0,
-                 "type":3,
-                 "color":"#888888",
-                 "isEditable":false
-              },
-              "direction":"in"
-           }
         ],
         "outputPorts":[
            {

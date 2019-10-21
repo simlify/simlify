@@ -126,6 +126,11 @@ export class NodeBase {
     return this.outputPorts.filter(outputPort => outputPort.label === label);
   }
 
+  removePort(id: string) {
+    this.inputPorts = this.inputPorts.filter(inputPort => inputPort.id !== id);
+    this.outputPorts = this.outputPorts.filter(outputPort => outputPort.id !== id);
+  }
+
   async fetchInputPorts(): Promise<any> {
     const inputPortValues: any = {};
 
