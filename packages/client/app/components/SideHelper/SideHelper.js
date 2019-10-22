@@ -5,11 +5,14 @@ import SideHelperSettings from './SideHelperSettings';
 
 import './SideHelper.scss';
 
+const defaultDescription = `This project is work in progress. Feel free to give feedback on https://github.com/simlify/simlify. \
+For examples visit https://github.com/simlify/simlify/wiki/Example-Flows.`;
+
 function renderDescription(description, nodeModel) {
   return (
     <div className="sideHelper__body__description">
-      <RenderWidget nodeModel={nodeModel}/>
-      { description }
+      { nodeModel !== {} || <RenderWidget nodeModel={nodeModel}/> }
+      { description || defaultDescription }
     </div>
   )
 }
@@ -27,7 +30,7 @@ function renderSettings(settings, nodeModel, nodeModelOptions) {
 const SideHelper = (props) => {
   const { nodeModel = {} } = props;
   const { options: nodeModelOptions = {} } = nodeModel;
-  const { options } = nodeModelOptions;
+  const { options = { description: null } } = nodeModelOptions;
   const [selectedTab, changeTab] = useState(0);
 
   return (
@@ -38,7 +41,7 @@ const SideHelper = (props) => {
       />
       <div className="sideHelper__body boxShadow" key={`${nodeModelOptions.id}`}>
         {
-          selectedTab === 0 && options && options.description &&
+          selectedTab === 0 &&
           renderDescription(options.description, nodeModel)
         }
         {
