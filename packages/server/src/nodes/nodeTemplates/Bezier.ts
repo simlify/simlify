@@ -16,9 +16,10 @@ function invertDirection(bezierPointsLinear: {name: number, value: number}[]) {
 }
 
 function invertPoints(points: number[]) {
-  points[1] = 1 - points[1];
-  points[3] = 1 - points[3];
-  return points;
+  const invertedPoints = [...points];
+  invertedPoints[1] = 1 - points[1];
+  invertedPoints[3] = 1 - points[3];
+  return invertedPoints;
 }
 
 export default class Bezier extends NodeDataBase {
