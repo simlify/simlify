@@ -28,16 +28,19 @@ export const commonData : CommonData = {
 
 const addInitialNodes = (currentFlow: Flow) => {
   const startNode = currentFlow.addNode('StartNode') as any;
-  startNode.setPosition(480, 180);
+  startNode.setPosition(240, 80);
 
   const triggerCurveNode = currentFlow.addNode('TriggerCurve') as any;
-  triggerCurveNode.setPosition(480, 290);
+  triggerCurveNode.setPosition(480, 190);
 
   const numberNode = currentFlow.addNode('RandomNumber');
-  numberNode.setPosition(240, 290);
+  numberNode.setPosition(240, 190);
+
+  const restartFlow = currentFlow.addNode('RestartFlow') as any;
+  restartFlow.setPosition(720, 300);
 
   startNode.connectOutputTriggerPort(triggerCurveNode.getTriggerInputPort());
-  triggerCurveNode.connectOutputTriggerPort(startNode.getTriggerInputPort());
+  triggerCurveNode.connectOutputTriggerPort(restartFlow.getTriggerInputPort());
 
   const sourcePort = numberNode.getOutputPortsByLabel('random number')[0];
   const targetPort = triggerCurveNode.getInputPortsByLabel('offset')[0];
