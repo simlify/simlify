@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 
 // Redux store
@@ -30,6 +30,7 @@ const Root = () => {
           <div style={{display: 'flex', flexFlow: 'column', height: '100vh'}}>
             <MainLayout>
               <Switch>
+                <Redirect exact from="/" to="/app/simulator" />
                 <Route exact path="/app/simulator" component={Simulator} />
                 <Route component={NotFound} status={404} />
               </Switch>
