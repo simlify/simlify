@@ -48,9 +48,12 @@ export class SimPortModel extends PortModel {
 
 	canLinkToPort(port) {
 		if (port instanceof SimPortModel) {
-			return this.direction !== port.direction && this.portType.type === port.portType.type;
+			const sameDirection = this.direction === port.direction;
+			const samePortType = this.portType.type === port.portType.type;
+			const portTypeAny = this.portType.type === 'any' || port.portType.type === 'any'; 
+			if (!sameDirection && (samePortType || portTypeAny)) return true;
 		}
-		return true;
+		return false;
 	}
 
 	createLinkModel(factory) {
