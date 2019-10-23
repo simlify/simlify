@@ -12,6 +12,8 @@ export enum PortValueType {
   trigger = 'trigger',
   JSON = 'JSON',
   boolean = 'boolean',
+  string = 'string',
+  any = 'any',
 }
 
 export const portTypeFactory = {
@@ -20,6 +22,8 @@ export const portTypeFactory = {
   createTimeSeriesPortType: () => Object.assign({}, timeSeriesPortType),
   createJSONPortType: () => Object.assign({}, jsonPortType),
   createBooleanPortType: () => Object.assign({}, booleanPortType),
+  createStringPortType: () => Object.assign({}, stringPortType),
+  createAnyPortType: () => Object.assign({}, anyPortType),
 };
 
 export const numberPortType: PortType = {
@@ -54,5 +58,19 @@ export const booleanPortType: PortType = {
   value: false,
   type: PortValueType.boolean,
   color: '#d6647b',
+  isEditable: true,
+};
+
+export const stringPortType: PortType = {
+  value: false,
+  type: PortValueType.string,
+  color: '#b7d664',
+  isEditable: true,
+};
+
+export const anyPortType: PortType = {
+  value: false,
+  type: PortValueType.any,
+  color: '#ffffff',
   isEditable: true,
 };

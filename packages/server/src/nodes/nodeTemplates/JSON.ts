@@ -19,14 +19,14 @@ export default class JSON extends NodeTriggerBase {
     super(parentFlow, nodeId);
     this.nodeCategory = NodeCategory.Conversion;
 
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input1', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input2', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input3', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input4', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input5', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input6', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input7', 0));
-    super.addPort(new InputPort(this, portTypeFactory.createNumberPortType(), 'input8', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input1', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input2', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input3', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input4', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input5', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input6', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input7', 0));
+    super.addPort(new InputPort(this, portTypeFactory.createAnyPortType(), 'input8', 0));
 
     super.addPort(new OutputPort(
         this,
